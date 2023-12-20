@@ -10,14 +10,13 @@ public class Player {
     public void makeMove(Board board){
         String s = getMove();
         Scanner input = new Scanner(s);
-        board.movePiece(input.nextInt(), input.nextInt(), input.nextInt(), input.nextInt());
-        input.close();
+        board.movePiece(input.nextInt(), input.nextInt(), input.nextInt(), input.nextInt(), this.side);
     }
 
     private String getMove(){
+        System.out.println("Make Move: ");
         Scanner input = new Scanner(System.in);
         String s = input.nextLine();
-        input.close();
         return parseMove(s);
     }
 
