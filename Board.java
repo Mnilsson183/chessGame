@@ -28,19 +28,15 @@ class Board {
 					case 'k':
 						board[x][y] = new Piece('k', y < 2 ? 'b' : 'w');
 						break;
-
 					case 'b':
 						board[x][y] = new Piece('b', y < 2 ? 'b' : 'w');
 						break;
-				
 					case 'q':
 						board[x][y] = new Piece('q', y < 2 ? 'b' : 'w');
 						break;
-
 					case 'K':
 						board[x][y] = new Piece('K', y < 2 ? 'b' : 'w');
 						break;
-
 					case 'p':
 						board[x][y] = new Piece('p', y < 2 ? 'b' : 'w');
 						break;
@@ -62,22 +58,27 @@ class Board {
 	}
 
     public void movePiece(int x, int y, int end_x, int end_y, char side){
-		// TODO will need rewrite
 		if(end_x < 0 || end_x > board[0].length){
 			throw new ArrayIndexOutOfBoundsException();
 		}
+
 		if(end_y < 0 || end_y > board.length){
 			throw new ArrayIndexOutOfBoundsException();
 		}
-		if(this.getPiece(end_x, end_y).getSide() != side && this.getPiece(x, y).getSide() == side){
+		
+		if(this.getPiece(end_x, end_y).getSide() != side && this.getPiece(x, y).getSide() == side 
+			&& this.getPiece(x, y).isValidMove(end_x, end_y, x, y))
+		{
 			board[end_x][end_y] = board[x][y];
 			board[x][y] = new Piece(' ', ' ');
 		} else if(this.getPiece(end_x, end_y).getSide() == side){
 			System.out.println("Cannot take own piece");
-		} else if(this.getPiece(end_x, end_y).getSide() == ' ') {
+		} else if(this.getPiece(x, y).getSide() == ' ') {
 			System.out.println("There is no piece there to move");
 		} else if(this.getPiece(x, y).getSide() != side){
 			System.out.println("Cannot move opponents pieces");
+		} else if(this.getPiece(x, y).isValidMove(end_x, end_y, x, y) == false){
+			System.out.println("Not a valid move for that piece");
 		}
     }
 

@@ -14,7 +14,16 @@ public class Player {
     }
 
     private String getMove(){
-        System.out.println("Make Move: ");
+        switch (this.getSide()) {
+            case 'w':
+                System.out.print("White ");
+                break;
+        
+            case 'b':
+                System.out.print("Black ");
+                break;
+        }
+        System.out.println("make Move: ");
         Scanner input = new Scanner(System.in);
         String s = input.nextLine();
         return parseMove(s);
@@ -24,5 +33,9 @@ public class Player {
     private String parseMove(String lineIn){
         // TODO implement this
         return lineIn;
+    }
+
+    public char getSide(){
+        return side;
     }
 }
