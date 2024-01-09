@@ -1,5 +1,9 @@
 public class Queen extends Piece{
 
+	public Queen(char side){
+		super(side);
+	}
+
     @Override
     public boolean isValidMove(int x, int y, int my_x, int my_y) {
         return isStraight(x, y, my_x, my_y) ^ isDiagonal(x, y, my_x, my_y);

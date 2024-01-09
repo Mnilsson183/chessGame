@@ -5,6 +5,10 @@ class Piece {
 	private int value;
 	private char side;
 
+	public Piece(char side){
+		this.side = side;
+	}
+
 	public int getValue(){
 		return value;
 	}

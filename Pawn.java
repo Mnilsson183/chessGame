@@ -1,5 +1,8 @@
 public class Pawn extends Piece{
     
+    public Pawn(char side){
+        super(side);
+    }
     @Override
     public boolean isValidMove(int x, int y, int my_x, int my_y) {
         boolean isValid = false;

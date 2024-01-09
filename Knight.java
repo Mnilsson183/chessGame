@@ -1,4 +1,8 @@
 public class Knight extends Piece {
+    
+    public Knight(char side){
+        super(side);
+    }
     @Override
     public boolean isValidMove(int x, int y, int my_x, int my_y) {
         return isStraight(x, y, my_x, my_y);

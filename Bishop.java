@@ -1,5 +1,9 @@
 public class Bishop extends Piece{
 
+    public Bishop(char side){
+        super(side);
+    }
+    
     @Override
     public boolean isValidMove(int x, int y, int my_x, int my_y) {
         return isDiagonal(x, y, my_x, my_y);
