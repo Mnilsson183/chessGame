@@ -11,6 +11,7 @@ public class Player {
         String s = getMove();
         Scanner input = new Scanner(s);
         board.movePiece(input.nextInt(), input.nextInt(), input.nextInt(), input.nextInt(), this.side);
+        input.close();
     }
 
     private String getMove(){
@@ -26,6 +27,7 @@ public class Player {
         System.out.println("make Move: ");
         Scanner input = new Scanner(System.in);
         String s = input.nextLine();
+        input.close();
         return parseMove(s);
     }
 

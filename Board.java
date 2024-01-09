@@ -22,26 +22,26 @@ class Board {
 			for(int y = 0; y < defaultBoard[0].length; y++){
 				switch (defaultBoard[x][y]) {
 					case 'r':
-						board[x][y] = new Piece('r', y < 2 ? 'b' : 'w');
+						board[x][y] = new Rook('r', y < 2 ? 'b' : 'w');
 						break;
 
 					case 'k':
-						board[x][y] = new Piece('k', y < 2 ? 'b' : 'w');
+						board[x][y] = new Knight('k', y < 2 ? 'b' : 'w');
 						break;
 					case 'b':
-						board[x][y] = new Piece('b', y < 2 ? 'b' : 'w');
+						board[x][y] = new Bishop('b', y < 2 ? 'b' : 'w');
 						break;
 					case 'q':
-						board[x][y] = new Piece('q', y < 2 ? 'b' : 'w');
+						board[x][y] = new Queen('q', y < 2 ? 'b' : 'w');
 						break;
 					case 'K':
-						board[x][y] = new Piece('K', y < 2 ? 'b' : 'w');
+						board[x][y] = new King('K', y < 2 ? 'b' : 'w');
 						break;
 					case 'p':
-						board[x][y] = new Piece('p', y < 2 ? 'b' : 'w');
+						board[x][y] = new Pawn('p', y < 2 ? 'b' : 'w');
 						break;
 					case ' ':
-						board[x][y] = new Piece(' ', ' ');
+						board[x][y] = new Piece();
 						break;
 				}
 			}
