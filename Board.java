@@ -41,7 +41,7 @@ class Board {
 						board[x][y] = new Pawn(y < 2 ? 'b' : 'w');
 						break;
 					case ' ':
-						board[x][y] = new Piece(' ');
+						board[x][y] = new NullPiece(' ');
 						break;
 				}
 			}
@@ -80,7 +80,17 @@ class Board {
 		} else if(this.getPiece(x, y).isValidMove(end_x, end_y, x, y) == false){
 			System.out.println("Not a valid move for that piece");
 		}
+
+		printMovePiece(x, y, end_x, end_y);
     }
+
+	private void printMovePiece(int x, int y, int end_x, int end_y){
+		char curr = this.getPiece(x, y).getType();
+		char end = this.getPiece(end_x, end_y).getType();
+
+		System.out.println(curr + "  ->  " + end);
+		System.out.printf("(%d, %d)   (%d, %d)", x, y, end_x, end_y);
+	}
 
 	public int getPieceValue(int x, int y){
 		return board[x][y].getValue();

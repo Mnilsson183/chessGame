@@ -27,7 +27,6 @@ public class Player {
         System.out.println("make Move: ");
         Scanner input = new Scanner(System.in);
         String s = input.nextLine();
-        input.close();
         return parseMove(s);
     }
 

@@ -2,6 +2,7 @@ public class Queen extends Piece{
 
 	public Queen(char side){
 		super(side);
+		this.setType('q');
 	}
 
     @Override

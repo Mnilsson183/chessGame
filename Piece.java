@@ -21,6 +21,10 @@ class Piece {
 		return type;
 	}
 
+	public void setType(char type){
+		this.type = type;
+	}
+
 	public boolean isValidMove(int x, int y, int my_x, int my_y) {
 		return false;
 	}

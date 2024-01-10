@@ -2,6 +2,7 @@ public class Knight extends Piece {
     
     public Knight(char side){
         super(side);
+        this.setType('k');
     }
     @Override
     public boolean isValidMove(int x, int y, int my_x, int my_y) {

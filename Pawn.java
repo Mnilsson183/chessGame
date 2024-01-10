@@ -2,6 +2,7 @@ public class Pawn extends Piece{
     
     public Pawn(char side){
         super(side);
+        this.setType('p');
     }
     @Override
     public boolean isValidMove(int x, int y, int my_x, int my_y) {
