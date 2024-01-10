@@ -85,11 +85,11 @@ class Board {
     }
 
 	private void printMovePiece(int x, int y, int end_x, int end_y){
-		char curr = this.getPiece(x, y).getType();
+		char current = this.getPiece(x, y).getType();
 		char end = this.getPiece(end_x, end_y).getType();
 
-		System.out.println(curr + "  ->  " + end);
-		System.out.printf("(%d, %d)   (%d, %d)", x, y, end_x, end_y);
+		System.out.println(" " + current + "  ->  " + end);
+		System.out.printf("(%d, %d)(%d, %d)\n", x, y, end_x, end_y);
 	}
 
 	public int getPieceValue(int x, int y){
