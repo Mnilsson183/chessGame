@@ -5,11 +5,11 @@ public class Knight extends Piece {
         this.setType('k');
     }
     @Override
-    public boolean isValidMove(int x, int y, int my_x, int my_y) {
-        return isStraight(x, y, my_x, my_y);
+    public boolean isValidMove(int row, int column, int my_row, int my_column) {
+        return isStraight(row, column, my_row, my_column);
     }
 
-    private boolean isStraight(int x, int y, int my_x, int my_y){
-            return (my_x == x) ^ (my_y == y);
+    private boolean isStraight(int row, int column, int my_row, int my_column){
+            return (my_row == row) ^ (my_column == column);
         }
 }

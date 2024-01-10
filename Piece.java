@@ -25,7 +25,7 @@ class Piece {
 		this.type = type;
 	}
 
-	public boolean isValidMove(int x, int y, int my_x, int my_y) {
+	public boolean isValidMove(int row, int column, int my_row, int my_column) {
 		return false;
 	}
 }

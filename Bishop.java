@@ -6,14 +6,14 @@ public class Bishop extends Piece{
     }
     
     @Override
-    public boolean isValidMove(int x, int y, int my_x, int my_y) {
-        return isDiagonal(x, y, my_x, my_y);
+    public boolean isValidMove(int row, int column, int my_row, int my_column) {
+        return isDiagonal(row, column, my_row, my_column);
     }
 
-    private boolean isDiagonal(int x, int y, int my_x, int my_y){
-        int change_x = x - my_x;
-        int change_y = y - my_y;
-        return change_x == change_y;
+    private boolean isDiagonal(int row, int column, int my_row, int my_column){
+        int change_row = row - my_row;
+        int change_column = column - my_column;
+        return change_row == change_column;
     }
     
 }

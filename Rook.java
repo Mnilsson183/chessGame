@@ -5,7 +5,7 @@ public class Rook extends Piece {
         this.setType('r');
     }
     @Override
-    public boolean isValidMove(int x, int y, int my_x, int my_y) {
-        return ((my_x - x == 2 ^ my_y - y == 2) && (my_x - x == 1) ^ (my_y - y == 1));
+    public boolean isValidMove(int row, int column, int my_row, int my_column) {
+        return ((my_row - row == 2 ^ my_column - column == 2) && (my_row - row == 1) ^ (my_column - column == 1));
     }
 }
