@@ -14,94 +14,86 @@ class Board {
 	Piece[][] board = new Piece[8][8];
 
 	int moveNumber;
-	int boardMax_x = 8;
-	int boardMax_y = 8;
+	int boardMax_row = 8;
+	int boardMax_column = 8;
 
 	public Board(){
-		for(int x = 0; x < defaultBoard.length; x++){
-			for(int y = 0; y < defaultBoard[0].length; y++){
-				switch (defaultBoard[x][y]) {
-					case 'r':
-						board[x][y] = new Rook(y < 2 ? 'b' : 'w');
-						break;
-
-					case 'k':
-						board[x][y] = new Knight(y < 2 ? 'b' : 'w');
-						break;
-					case 'b':
-						board[x][y] = new Bishop(y < 2 ? 'b' : 'w');
-						break;
-					case 'q':
-						board[x][y] = new Queen(y < 2 ? 'b' : 'w');
-						break;
-					case 'K':
-						board[x][y] = new King(y < 2 ? 'b' : 'w');
-						break;
-					case 'p':
-						board[x][y] = new Pawn(y < 2 ? 'b' : 'w');
-						break;
-					case ' ':
-						board[x][y] = new NullPiece(' ');
-						break;
+		for(int row = 0; row < defaultBoard.length; row++){
+			for(int column = 0; column < defaultBoard[0].length; column++){
+				switch (defaultBoard[row][column]) {
+					case 'r': board[row][column] = new Rook(row > 2 ? 'b' : 'w'); break;
+					case 'k': board[row][column] = new Knight(row > 2 ? 'b' : 'w'); break;
+					case 'b': board[row][column] = new Bishop(row > 2 ? 'b' : 'w'); break;
+					case 'q': board[row][column] = new Queen(row > 2 ? 'b' : 'w'); break;
+					case 'K': board[row][column] = new King(row > 2 ? 'b' : 'w'); break;
+					case 'p': board[row][column] = new Pawn(row > 2 ? 'b' : 'w'); break;
+					case ' ': board[row][column] = new NullPiece(' '); break;
 				}
 			}
 		}
 		moveNumber = 0;
 	}
 
-    public Piece getPiece(int x, int y) {
-	    return board[x][y];
+    public Piece getPiece(int row, int column) {
+	    return board[row][column];
     }
 
-	public boolean isEmpty(int x, int y){
-		return board[x][y].getType() == ' ' ? false : true;
+	public boolean isEmpty(int row, int column){
+		return board[row][column].getType() == ' ' ? false : true;
 	}
 
-    public void movePiece(int x, int y, int end_x, int end_y, char side){
-		if(end_x < 0 || end_x > board[0].length){
+    public boolean movePiece(int row, int column, int end_row, int end_column, char side){
+		boolean success = false;
+		if(end_row < 0 || end_row > board[0].length){
 			throw new ArrayIndexOutOfBoundsException();
 		}
 
-		if(end_y < 0 || end_y > board.length){
+		if(end_column < 0 || end_column > board.length){
 			throw new ArrayIndexOutOfBoundsException();
 		}
 		
-		if(this.getPiece(end_x, end_y).getSide() != side && this.getPiece(x, y).getSide() == side 
-			&& this.getPiece(x, y).isValidMove(end_x, end_y, x, y))
+		if(this.getPiece(end_row, end_column).getSide() != side && this.getPiece(row, column).getSide() == side 
+			&& this.getPiece(row, column).isValidMove(end_row, end_column, row, column))
 		{
-			board[end_x][end_y] = board[x][y];
-			board[x][y] = new Piece(' ');
-		} else if(this.getPiece(end_x, end_y).getSide() == side){
+			board[end_row][end_column] = board[row][column];
+			board[row][column] = new Piece(' ');
+			moveNumber++;
+			success = true;
+		} else if(this.getPiece(end_row, end_column).getSide() == side){
 			System.out.println("Cannot take own piece");
-		} else if(this.getPiece(x, y).getSide() == ' ') {
+		} else if(this.getPiece(row, column).getSide() == ' ') {
 			System.out.println("There is no piece there to move");
-		} else if(this.getPiece(x, y).getSide() != side){
+		} else if(this.getPiece(row, column).getSide() != side){
 			System.out.println("Cannot move opponents pieces");
-		} else if(this.getPiece(x, y).isValidMove(end_x, end_y, x, y) == false){
+		} else if(this.getPiece(row, column).isValidMove(row, column, end_row, end_column) == false){
 			System.out.println("Not a valid move for that piece");
 		}
 
-		printMovePiece(x, y, end_x, end_y);
+		printMovePiece(row, column, end_row, end_column);
+		return success;
     }
 
-	private void printMovePiece(int x, int y, int end_x, int end_y){
-		char current = this.getPiece(x, y).getType();
-		char end = this.getPiece(end_x, end_y).getType();
+	private void printMovePiece(int row, int column, int end_row, int end_column){
+		Piece current = this.getPiece(row, column);
+		String currentSide = utils.convertSideCharToString(current.getSide());
+		Piece end = this.getPiece(end_row, end_column);
+		String endSide = utils.convertSideCharToString(end.getSide());
 
-		System.out.println(" " + current + "  ->  " + end);
-		System.out.printf("(%d, %d)(%d, %d)\n", x, y, end_x, end_y);
+		System.out.println(currentSide + " " + endSide);
+		System.out.println(" " + current.getType() + "  ->  " + end.getType());
+		System.out.printf("(%d, %d)(%d, %d)\n", row, column, end_row, end_column);
 	}
 
-	public int getPieceValue(int x, int y){
-		return board[x][y].getValue();
+	public int getPieceValue(int row, int column){
+		return board[row][column].getValue();
 	}
 
 	public int getValueOnBoard(char side){
 		int sum = 0;
-		for(int x = 0; x < boardMax_x; x++){
-			for(int y = 0; y < boardMax_y; y++){
-				if(board[x][y].getSide() == side){
-					sum += board[x][y].getValue();
+		for(int row = 0; row < boardMax_row; row++){
+			for(int column = 0; column < boardMax_column; column++){
+				if(board[row][column].getSide() == side){
+					sum += board[row][column].getValue();
 				}
 			}
 		}
@@ -114,9 +106,9 @@ class Board {
 
 	public void printBoard(Board board){
 		System.out.println("Black");
-		for(int x = 0; x < boardMax_x; x++){
-			for(int y = 0; y < boardMax_y; y++){
-				System.out.printf("%c ", board.getPiece(x, y).getType());
+		for(int row = 0; row < boardMax_row; row++){
+			for(int y = 0; y < boardMax_column; y++){
+				System.out.printf("%c ", board.getPiece(row, y).getType());
 			}
 			System.out.println();
 		}

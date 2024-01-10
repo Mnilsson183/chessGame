@@ -28,6 +28,5 @@ class Piece {
 	public boolean isValidMove(int x, int y, int my_x, int my_y) {
 		return false;
 	}
-
 }
 

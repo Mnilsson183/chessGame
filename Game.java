@@ -7,9 +7,9 @@ public class Game {
 
         while(!isWinner(board)){
             board.printBoard(board);
-            player_w.makeMove(board);
+            while(player_w.makeMove(board));
             board.printBoard(board);
-            player_b.makeMove(board);
+            while(player_b.makeMove(board));
         }
     }
 

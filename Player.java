@@ -7,11 +7,12 @@ public class Player {
         this.side = side;
     }
     
-    public void makeMove(Board board){
+    public boolean makeMove(Board board){
         String s = getMove();
         Scanner input = new Scanner(s);
-        board.movePiece(input.nextInt(), input.nextInt(), input.nextInt(), input.nextInt(), this.side);
+        boolean b = board.movePiece(input.nextInt(), input.nextInt(), input.nextInt(), input.nextInt(), this.side);
         input.close();
+        return b;
     }
 
     private String getMove(){
