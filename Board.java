@@ -44,6 +44,7 @@ class Board {
 
     public boolean movePiece(int row, int column, int end_row, int end_column, char side){
 		boolean success = false;
+		printMovePiece(row, column, end_row, end_column);
 		if(end_row < 0 || end_row > board[0].length){
 			throw new ArrayIndexOutOfBoundsException();
 		}
@@ -53,7 +54,7 @@ class Board {
 		}
 		
 		if(this.getPiece(end_row, end_column).getSide() != side && this.getPiece(row, column).getSide() == side 
-			&& this.getPiece(row, column).isValidMove(end_row, end_column, row, column))
+			&& this.getPiece(row, column).isValidMove(row, column, end_row, end_column))
 		{
 			board[end_row][end_column] = board[row][column];
 			board[row][column] = new Piece(' ');
@@ -69,7 +70,6 @@ class Board {
 			System.out.println("Not a valid move for that piece");
 		}
 
-		printMovePiece(row, column, end_row, end_column);
 		return success;
     }
 
