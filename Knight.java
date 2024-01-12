@@ -4,12 +4,13 @@ public class Knight extends Piece {
         super(side);
         this.setType('k');
     }
-    @Override
-    public boolean isValidMove(int row, int column, int my_row, int my_column) {
-        return isStraight(row, column, my_row, my_column);
-    }
-
-    private boolean isStraight(int row, int column, int my_row, int my_column){
-            return (my_row == row) ^ (my_column == column);
-        }
+ 
+    public boolean isValidMove(int x, int y, int my_x, int my_y){
+		if(Math.abs(my_x - x) == 2 ^ Math.abs(my_y - y) == 2){
+			if(Math.abs(my_x - x) == 1 ^ Math.abs(my_y - y) == 1){
+				return true;
+			}
+		}
+		return false;
+	}
 }
