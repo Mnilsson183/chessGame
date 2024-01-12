@@ -21,12 +21,12 @@ class Board {
 		for(int row = 0; row < defaultBoard.length; row++){
 			for(int column = 0; column < defaultBoard[0].length; column++){
 				switch (defaultBoard[row][column]) {
-					case 'r': board[row][column] = new Rook(row > 2 ? 'b' : 'w'); break;
-					case 'k': board[row][column] = new Knight(row > 2 ? 'b' : 'w'); break;
-					case 'b': board[row][column] = new Bishop(row > 2 ? 'b' : 'w'); break;
-					case 'q': board[row][column] = new Queen(row > 2 ? 'b' : 'w'); break;
-					case 'K': board[row][column] = new King(row > 2 ? 'b' : 'w'); break;
-					case 'p': board[row][column] = new Pawn(row > 2 ? 'b' : 'w'); break;
+					case 'r': board[row][column] = new Rook(row < 2 ? 'b' : 'w'); break;
+					case 'k': board[row][column] = new Knight(row < 2 ? 'b' : 'w'); break;
+					case 'b': board[row][column] = new Bishop(row < 2 ? 'b' : 'w'); break;
+					case 'q': board[row][column] = new Queen(row < 2 ? 'b' : 'w'); break;
+					case 'K': board[row][column] = new King(row < 2 ? 'b' : 'w'); break;
+					case 'p': board[row][column] = new Pawn(row < 2 ? 'b' : 'w'); break;
 					case ' ': board[row][column] = new NullPiece(' '); break;
 				}
 			}

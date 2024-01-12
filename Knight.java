@@ -5,9 +5,9 @@ public class Knight extends Piece {
         this.setType('k');
     }
  
-    public boolean isValidMove(int x, int y, int my_x, int my_y){
-		if(Math.abs(my_x - x) == 2 ^ Math.abs(my_y - y) == 2){
-			if(Math.abs(my_x - x) == 1 ^ Math.abs(my_y - y) == 1){
+    public boolean isValidMove(int my_row, int my_column, int end_row, int end_column){
+		if(Math.abs(my_row - end_row) == 2 ^ Math.abs(my_column - end_column) == 2){
+			if(Math.abs(my_row - end_row) == 1 ^ Math.abs(my_column - end_column) == 1){
 				return true;
 			}
 		}
