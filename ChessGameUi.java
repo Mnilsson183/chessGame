@@ -1,3 +1,4 @@
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.*;
@@ -17,9 +18,30 @@ public class ChessGameUi extends JFrame{
 
     private JPanel createBoardJPanel(){
         JPanel chessBoardJPanel = new JPanel(new GridLayout(8, 8));
-        add(new Button());
+        
+        for(int row = 0; row < 8; row++){
+            for(int column = 0; column < 8; column++){
+                JButton tileButton = createTileButton(row, column);
+                chessBoardJPanel.add(tileButton);
+            }
+        }
 
         return chessBoardJPanel;
+    }
+
+    private JButton createTileButton(int row, int column){
+        JButton button = new JButton();
+        button.setBackground((row + column) % 2 == 0 ? Color.white : Color.BLACK);
+        button.addActionListener(e -> handleTileClick(row, column));
+        return button;
+    }
+
+    private void handleTileClick(int row, int column){
+
+    }
+
+    public void updateChessBoard(Board board){
+
     }
 
 }
