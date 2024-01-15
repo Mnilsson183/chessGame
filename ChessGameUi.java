@@ -40,7 +40,7 @@ public class ChessGameUi extends JFrame{
 
     }
 
-    public void updateChessBoard(Board board){
+    public void renderChessBoard(Board board){
 
     }
 
