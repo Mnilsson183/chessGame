@@ -13,4 +13,17 @@ public class Rook extends Piece {
     private boolean isStraight(int my_row, int my_column, int end_row, int end_column){
         return (my_row == end_row) ^ (my_column == end_column);
     }
+
+    public boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
+        if(initialRow != finalRow){
+            for(int i = 0; i + initialRow < finalRow; i++){
+                if(!board.isEmpty(initialRow + i, initialColumn)) return false;
+            }
+        } else if(initialColumn != finalColumn){
+            for(int i = 0; i + initialColumn < finalColumn; i++){
+                if(!board.isEmpty(initialRow, initialColumn + i)) return false;
+            }
+        }
+        return true;
+    }
 }
