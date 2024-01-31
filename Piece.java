@@ -28,5 +28,9 @@ class Piece {
 	public boolean isValidMove(int row, int column, int my_row, int my_column) {
 		return false;
 	}
+
+	public boolean isBlocked(){
+		
+	}
 }
 

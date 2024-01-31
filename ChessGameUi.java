@@ -37,7 +37,7 @@ public class ChessGameUi extends JFrame{
     }
 
     private void handleTileClick(int row, int column){
-
+        
     }
 
     public void renderChessBoard(Board board){
