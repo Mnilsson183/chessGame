@@ -47,4 +47,9 @@ public class Tile {
     public char getSide(){
         return this.getBoardPiece().getSide();
     }
+
+    public boolean isBlocked(Tile tile){
+		return this.getBoardPiece().isBlocked(this.getRow(), this.getColumn(), tile.getRow(), this.getColumn());
+	}
+
 }

@@ -29,8 +29,8 @@ class Piece {
 		return false;
 	}
 
-	public boolean isBlocked(){
-		
+	public boolean isBlocked(int initalRow, int initalColumn, int finalRow, int finalColumn){
+		return true;
 	}
 }
 

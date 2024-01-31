@@ -63,12 +63,16 @@ class Board {
 	public boolean movePiece(Tile initialTile, Tile finalTile, char side){
 		boolean success = false;
 		printMovePiece(initialTile, finalTile);
-		if(finalTile.getRow() < 0 || finalTile.getRow() > board[0].length){
-			throw new ArrayIndexOutOfBoundsException();
-		}
-
-		if(finalTile.getColumn() < 0 || finalTile.getColumn() > board.length){
-			throw new ArrayIndexOutOfBoundsException();
+		try {
+			if(finalTile.getRow() < 0 || finalTile.getRow() > board[0].length){
+				throw new BoardOutOfBoundsException("The row to be moved to or from is out of range");
+			}
+	
+			if(finalTile.getColumn() < 0 || finalTile.getColumn() > board.length){
+				throw new BoardOutOfBoundsException("The column to be moved to or from is out of range");
+			}	
+		} catch (BoardOutOfBoundsException e) {
+			return false;
 		}
 		
 		if(finalTile.getSide() != side && initialTile.getSide() == side 

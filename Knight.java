@@ -13,4 +13,8 @@ public class Knight extends Piece {
 		}
 		return false;
 	}
+
+	public boolean isBlocked(){
+		return false;
+	}
 }
