@@ -48,8 +48,8 @@ public class Tile {
         return this.getBoardPiece().getSide();
     }
 
-    public boolean isBlocked(Tile tile){
-		return this.getBoardPiece().isBlocked(this.getRow(), this.getColumn(), tile.getRow(), this.getColumn());
+    public boolean isBlocked(Tile tile, Board board){
+		return this.getBoardPiece().isBlocked(this.getRow(), this.getColumn(), tile.getRow(), this.getColumn(), board);
 	}
 
 }

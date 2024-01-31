@@ -76,7 +76,7 @@ class Board {
 		}
 		
 		if(finalTile.getSide() != side && initialTile.getSide() == side 
-			&& initialTile.isValidMove(finalTile))
+			&& initialTile.isValidMove(finalTile) && !initialTile.isBlocked(finalTile, this))
 		{
 			finalTile.setBoardPiece(initialTile.getBoardPiece());
 			initialTile.setBoardPiece(new Piece(' '));
@@ -90,6 +90,8 @@ class Board {
 			System.out.println("Cannot move opponents pieces");
 		} else if(initialTile.isValidMove(finalTile) == false){
 			System.out.println("Not a valid move for that piece");
+		} else if(initialTile.isBlocked(finalTile, this)){
+			System.out.println("There is a piece in between");
 		}
 
 		return success;

@@ -34,4 +34,13 @@ public class Pawn extends Piece{
 
         return false;
     }
+
+    public boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
+        for(int offset = 0; initialColumn + offset < finalColumn; offset++){
+            if(!board.isEmpty(initialRow, offset + initialColumn)){
+                return false;
+            }
+        }
+        return true;
+    }
 }

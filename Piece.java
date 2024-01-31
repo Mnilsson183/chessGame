@@ -29,7 +29,7 @@ class Piece {
 		return false;
 	}
 
-	public boolean isBlocked(int initalRow, int initalColumn, int finalRow, int finalColumn){
+	public boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
 		return true;
 	}
 }

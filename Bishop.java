@@ -15,5 +15,14 @@ public class Bishop extends Piece{
         int change_column = Math.abs(end_column - my_column);
         return change_row == change_column;
     }
+
+    public boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
+        for(int offset = 0; offset < initialColumn - finalColumn; offset++){
+            if(!board.isEmpty(initialRow + offset, initialColumn + offset)){
+                return false;
+            }
+        }
+        return true;
+    }
     
 }
