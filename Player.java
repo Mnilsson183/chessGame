@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Player {
     char side;
+    boolean isChecked;
 
     public Player(char side){
         this.side = side;

@@ -1,3 +1,4 @@
+import java.util.Vector;
 
 class Board {
 
@@ -60,6 +61,40 @@ class Board {
 		return movePiece(board[initialX][initialY], board[endX][endY], side);
 	}
 
+	public Tile isChecked(Tile kingTile){
+		for(int row = 0; row < boardMax_row; row++){
+			for(int column = 0; column < boardMax_column; column++){
+				if(board[row][column].isValidMove(kingTile, this)) return board[row][column];
+			}
+		}
+		return new Tile();
+	}
+
+	public Tile[] pieceSearch(char piece, char side){
+		Vector<Tile> rTiles = new Vector<Tile>();
+		for(int row = 0; row < boardMax_row; row++){
+			for(int column = 0; column < boardMax_column; column++){
+				Tile tile = board[row][column];
+				if(((tile.getBoardPiece().getType() == piece) || piece == 'A') && ((tile.getBoardPiece().getSide() == side) || (side == 'A'))){
+					rTiles.add(tile);
+				}
+			}
+		}
+		return vectorToTileArray(rTiles);
+	}
+
+	private Tile[] vectorToTileArray(Vector<Tile> vec){
+		Tile[] tiles = new Tile[vec.size()];
+		for(int i = 0; i < vec.size(); i++){
+			tiles[i] = vec.get(i);
+		}
+		return tiles;
+	}
+
+	private void printIsChecked(Tile[] tiles){
+		
+	}
+
 	public boolean movePiece(Tile initialTile, Tile finalTile, char side){
 		boolean success = false;
 		printMovePiece(initialTile, finalTile);
@@ -76,7 +111,7 @@ class Board {
 		}
 		
 		if(finalTile.getSide() != side && initialTile.getSide() == side 
-			&& initialTile.isValidMove(finalTile) && !initialTile.isBlocked(finalTile, this))
+			&& initialTile.isValidMove(finalTile, this) && !this.isChecked(pieceSearch('K', side)[0]).isEmpty())
 		{
 			finalTile.setBoardPiece(initialTile.getBoardPiece());
 			initialTile.setBoardPiece(new Piece(' '));
@@ -88,10 +123,10 @@ class Board {
 			System.out.println("There is no piece there to move");
 		} else if(initialTile.getBoardPiece().getSide() != side){
 			System.out.println("Cannot move opponents pieces");
-		} else if(initialTile.isValidMove(finalTile) == false){
+		} else if(initialTile.isValidMove(finalTile, this) == false){
 			System.out.println("Not a valid move for that piece");
-		} else if(initialTile.isBlocked(finalTile, this)){
-			System.out.println("There is a piece in between");
+		} else if(!this.isChecked(pieceSearch('K', side)[0]).isEmpty()){
+			System.out.println("Your king is in check");
 		}
 
 		return success;

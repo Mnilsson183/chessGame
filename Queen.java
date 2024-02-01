@@ -6,8 +6,8 @@ public class Queen extends Piece{
 	}
 
     @Override
-    public boolean isValidMove(int my_row, int my_column, int end_row, int end_column) {
-        return isStraight(my_row, my_column, end_row, end_column) ^ isDiagonal(my_row, my_column, end_row, end_column);
+    public boolean isValidMove(int my_row, int my_column, int end_row, int end_column, Board board) {
+        return (isStraight(my_row, my_column, end_row, end_column) ^ isDiagonal(my_row, my_column, end_row, end_column)) || !isBlocked(my_row, my_column, end_row, end_column, board);
     }
 
     private boolean isDiagonal(int my_row, int my_column, int end_row, int end_column){
@@ -18,6 +18,36 @@ public class Queen extends Piece{
 
 	private boolean isStraight(int my_row, int my_column, int end_row, int end_column){
 		return (my_row == end_row) ^ (my_column == end_column);
+	}
+
+	public boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
+		if(isStraight(initialRow, initialColumn, finalRow, finalColumn)){
+			if(initialRow != finalRow){
+				for(int i = 0; i + initialRow < finalRow; i++){
+					if(!board.isEmpty(initialRow + i, initialColumn)) return false;
+				}
+			} else if(initialColumn != finalColumn){
+				for(int i = 0; i + initialColumn < finalColumn; i++){
+					if(!board.isEmpty(initialRow, initialColumn + i)) return false;
+				}
+			}
+			return true;
+		} else if(isDiagonal(initialRow, initialColumn, finalRow, finalColumn)){
+			for(int offset = 0; offset < initialColumn - finalColumn; offset++){
+				if(initialColumn - finalColumn < 0){
+					if(!board.isEmpty(initialRow - offset, initialColumn - offset)){
+						return false;
+					}
+				} else {
+					if(!board.isEmpty(initialRow + offset, initialColumn + offset)){
+						return false;
+					}
+				}
+			}
+			return true;
+		} else{
+			return false;
+		}
 	}
 
 }

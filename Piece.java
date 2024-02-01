@@ -25,11 +25,11 @@ class Piece {
 		this.type = type;
 	}
 
-	public boolean isValidMove(int row, int column, int my_row, int my_column) {
+	public boolean isValidMove(int row, int column, int my_row, int my_column, Board board) {
 		return false;
 	}
 
-	public boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
+	private boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
 		return true;
 	}
 }

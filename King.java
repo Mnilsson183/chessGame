@@ -5,7 +5,7 @@ public class King extends Piece{
         this.setType('K');
     }
     @Override
-    public boolean isValidMove(int my_row, int my_column, int end_row, int end_column) {
+    public boolean isValidMove(int my_row, int my_column, int end_row, int end_column, Board board) {
         return Math.abs(end_row - my_row) < 1 && Math.abs(end_column - my_column) < 1;
     }
 }

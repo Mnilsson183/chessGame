@@ -40,16 +40,16 @@ public class Tile {
         this.piece = piece;
     }
 
-    public boolean isValidMove(Tile tile){
-        return this.getBoardPiece().isValidMove(this.getRow(), this.getColumn(), tile.getRow(), this.getColumn());
+    public boolean isValidMove(Tile tile, Board board){
+        return this.getBoardPiece().isValidMove(this.getRow(), this.getColumn(), tile.getRow(), this.getColumn(), board);
     }
 
     public char getSide(){
         return this.getBoardPiece().getSide();
     }
 
-    public boolean isBlocked(Tile tile, Board board){
-		return this.getBoardPiece().isBlocked(this.getRow(), this.getColumn(), tile.getRow(), this.getColumn(), board);
-	}
+    public boolean isEmpty(){
+        return this.getBoardPiece() == null;
+    }
 
 }

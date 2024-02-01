@@ -6,8 +6,8 @@ public class Bishop extends Piece{
     }
     
     @Override
-    public boolean isValidMove(int my_row, int my_column, int end_row, int end_column) {
-        return isDiagonal(my_row, my_column, end_row, end_column);
+    public boolean isValidMove(int my_row, int my_column, int end_row, int end_column, Board board) {
+        return isDiagonal(my_row, my_column, end_row, end_column) || !isBlocked(my_row, my_column, end_row, end_column, board);
     }
 
     private boolean isDiagonal(int my_row, int my_column, int end_row, int end_column){
@@ -16,10 +16,16 @@ public class Bishop extends Piece{
         return change_row == change_column;
     }
 
-    public boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
+    private boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
         for(int offset = 0; offset < initialColumn - finalColumn; offset++){
-            if(!board.isEmpty(initialRow + offset, initialColumn + offset)){
-                return false;
+            if(initialColumn - finalColumn < 0){
+                if(!board.isEmpty(initialRow - offset, initialColumn - offset)){
+                    return false;
+                }
+            } else {
+                if(!board.isEmpty(initialRow + offset, initialColumn + offset)){
+                    return false;
+                }
             }
         }
         return true;

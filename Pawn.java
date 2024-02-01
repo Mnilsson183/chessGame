@@ -8,7 +8,7 @@ public class Pawn extends Piece{
     }
 
     @Override
-    public boolean isValidMove(int my_row, int my_column, int end_row, int end_column) {
+    public boolean isValidMove(int my_row, int my_column, int end_row, int end_column, Board board) {
         boolean isValid = false;
         if(this.getSide() == 'w'){
             if(my_row - 1 == end_row && my_column == end_column) isValid = true;
@@ -18,7 +18,7 @@ public class Pawn extends Piece{
             if(my_row + 2 == end_row && my_column == end_column && isFirstMove(my_row)) isValid = true;
         }
 
-        return isValid;
+        return isValid || !isBlocked(my_row, my_column, end_row, end_column, board);
     }
 
     private boolean isFirstMove(int my_row){
@@ -35,7 +35,7 @@ public class Pawn extends Piece{
         return false;
     }
 
-    public boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
+    private boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
         for(int offset = 0; initialColumn + offset < finalColumn; offset++){
             if(!board.isEmpty(initialRow, offset + initialColumn)){
                 return false;
