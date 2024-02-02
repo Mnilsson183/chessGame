@@ -51,10 +51,10 @@ class Board {
     }
 
 	public boolean isEmpty(Tile tile){
-		return tile.getBoardPiece().getType() == ' ' ? false : true;
+		return tile.getBoardPiece().getType() != ' ';
 	}
 	public boolean isEmpty(int row, int column){
-		return board[row][column].getBoardPiece().getType() == ' ' ? false : true;
+		return board[row][column].getBoardPiece().getType() != ' ';
 	}
 
 	public boolean movePiece(int initialX, int initialY, int endX, int endY, char side){
@@ -92,7 +92,9 @@ class Board {
 	}
 
 	private void printIsChecked(Tile[] tiles){
-		
+		for(int i = 0; i < tiles.length; i++){
+			System.out.println(utils.convertTypeCharToString(tiles[i].getBoardPiece().getType()) + "At (" + tiles[i].getRow() + ", " + tiles[i].getColumn() + ")");
+		}
 	}
 
 	public boolean movePiece(Tile initialTile, Tile finalTile, char side){

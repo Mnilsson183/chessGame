@@ -4,7 +4,6 @@ public class Game {
         Board board = new Board();
         Player player_w = new Player('w');
         Player player_b = new Player('b');
-        ChessGameUi ui = new ChessGameUi(board);
 
         while(!isWinner(board)){
             board.printBoard(board);

@@ -9,5 +9,24 @@ public class utils {
         }
     }
 
+    public static String convertTypeCharToString(char c){
+        switch (c) {
+            case 'p':
+                return "Pawn";
+            case 'r':
+                return "Rook";
+            case 'k':
+                return "Knight";
+            case 'b':
+                return "Bishop";
+            case 'q':
+                return "Queen";
+            case 'K':
+                return "King";
+            default:
+                return "";
+        }
+    }
+
     
 }
