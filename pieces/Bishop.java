@@ -1,3 +1,6 @@
+package pieces;
+
+import board.Board;
 public class Bishop extends Piece{
 
     public Bishop(char side){

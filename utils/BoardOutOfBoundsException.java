@@ -1,3 +1,4 @@
+package utils;
 public class BoardOutOfBoundsException extends Exception{
     public BoardOutOfBoundsException(){
         super();

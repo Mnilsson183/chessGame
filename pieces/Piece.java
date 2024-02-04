@@ -1,5 +1,7 @@
+package pieces;
+import board.Board;
 
-class Piece {
+public class Piece {
 
 	private char type;
 	private int value;

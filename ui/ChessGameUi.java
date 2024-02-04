@@ -1,6 +1,10 @@
+package ui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import board.Board;
+
 import java.awt.*;
 
 public class ChessGameUi extends JFrame{

@@ -1,3 +1,4 @@
+package utils;
 public class utils {
     public static String convertSideCharToString(char c){
         if(c == 'w'){

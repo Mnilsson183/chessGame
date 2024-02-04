@@ -1,3 +1,6 @@
+package board;
+import pieces.Piece;
+
 public class Tile {
 
     private final int row;

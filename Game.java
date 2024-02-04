@@ -1,3 +1,6 @@
+import board.Board;
+import board.Player;
+
 public class Game {
     public static void playGame(){
 

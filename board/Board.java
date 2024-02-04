@@ -1,6 +1,18 @@
+package board;
 import java.util.Vector;
 
-class Board {
+import pieces.Bishop;
+import pieces.King;
+import pieces.Knight;
+import pieces.Pawn;
+import pieces.Piece;
+import pieces.Queen;
+import pieces.Rook;
+import utils.BoardOutOfBoundsException;
+import utils.NullPiece;
+import utils.utils;
+
+public class Board {
 
 	char[][] defaultBoard  = {
 			{'r', 'k', 'b', 'q', 'K', 'b', 'k', 'r'},

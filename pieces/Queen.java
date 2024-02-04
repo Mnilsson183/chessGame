@@ -1,3 +1,5 @@
+package pieces;
+import board.Board;
 public class Queen extends Piece{
 
 	public Queen(char side){

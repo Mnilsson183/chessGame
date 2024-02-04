@@ -1,3 +1,6 @@
+package pieces;
+
+import board.Board;
 public class Pawn extends Piece{
     boolean firstMove;
     
