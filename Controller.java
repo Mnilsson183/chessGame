@@ -1,10 +1,17 @@
 import board.Board;
 import ui.ChessGameGui;
+import ui.ChessGameTui;
+import ui.ChessGameUi;
 
 class Controller{
-    public Controller(){
+    public Controller(String[] s){
         Board board = new Board();
-        ChessGameGui chessGameUi = new ChessGameGui(board);
+        ChessGameUi chessGameUi = null;
+        if(s.length > 1 || s.length == 0){
+            chessGameUi = new ChessGameGui();
+        } else if(s[0].equals("--tui")){
+            chessGameUi = new ChessGameTui(board);
+        }
         Game.playGame(board, chessGameUi);
     }
 }

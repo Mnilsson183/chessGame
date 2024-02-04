@@ -44,8 +44,8 @@ public class ChessGameGuiJFrame extends JFrame{
         
     }
 
-    public boolean renderChessBoard(Board board){
-
+    public void renderChessBoard(Board board){
+        
     }
 
 }
