@@ -1,7 +1,5 @@
 import board.Board;
 import board.Player;
-import ui.ChessGameGui;
-import ui.ChessGameTui;
 import ui.ChessGameUi;
 
 public class Game {

@@ -4,7 +4,7 @@ import ui.ChessGameTui;
 import ui.ChessGameUi;
 
 class Controller{
-    public Controller(String[] s){
+    public static void start(String[] s){
         Board board = new Board();
         ChessGameUi chessGameUi = null;
         if(s.length > 1 || s.length == 0){
