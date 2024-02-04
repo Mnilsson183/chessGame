@@ -1,10 +1,10 @@
 import board.Board;
-import ui.ChessGameUi;
+import ui.ChessGameGui;
 
 class Controller{
     public Controller(){
         Board board = new Board();
-        ChessGameUi chessGameUi = new ChessGameUi(board);
+        ChessGameGui chessGameUi = new ChessGameGui(board);
         Game.playGame(board, chessGameUi);
     }
 }

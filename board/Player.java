@@ -1,5 +1,6 @@
 package board;
 import java.util.Scanner;
+import pieces.MovedPiece;
 
 public class Player {
     char side;
@@ -9,12 +10,12 @@ public class Player {
         this.side = side;
     }
     
-    public boolean makeMove(Board board){
+    public MovedPiece makeMove(Board board){
         String s = getMove();
         Scanner input = new Scanner(s);
-        boolean b = board.movePiece(input.nextInt(), input.nextInt(), input.nextInt(), input.nextInt(), this.side);
+        MovedPiece receipt = board.movePiece(input.nextInt(), input.nextInt(), input.nextInt(), input.nextInt(), this.side);
         input.close();
-        return b;
+        return receipt;
     }
 
     private String getMove(){

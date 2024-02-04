@@ -7,5 +7,8 @@ index:
 run:
 	java Main
 
+count:
+	git ls-files | xargs wc -l
+
 clean:
 	rm -rf build/*
