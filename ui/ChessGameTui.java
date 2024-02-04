@@ -23,6 +23,7 @@ public class ChessGameTui extends ChessGameUi{
 			System.out.printf("--");
 		}
 		System.out.println();
+		System.out.print("  ");
 		for(int i = 0; i < boardMaxColumn; i++){
 			System.out.printf("%d ", i + 1);
 		}

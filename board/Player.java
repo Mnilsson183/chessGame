@@ -34,10 +34,26 @@ public class Player {
         return parseMove(s);
     }
 
-    // parsed moves should be in the form " x y end_x end_y "
+    // parsed moves should be in the form "row column end_row end_column"
+    // "A7 B6"
     private String parseMove(String lineIn){
-        // TODO implement this
-        return lineIn;
+        Scanner input = new Scanner(lineIn);
+
+        String initial = input.next();
+        String fin = input.next();
+        
+        String str = "" + convertAlphaRowToInt(initial.charAt(0)) + " " + initial.charAt(1);
+        return str + " " + convertAlphaRowToInt(fin.charAt(0)) + " " + fin.charAt(1);
+    }
+
+    private int convertAlphaRowToInt(char c){
+        char[] alpha = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        for(int i = 0; i < alpha.length; i++){
+            if(alpha[i] == c){
+                return i;
+            }
+        }
+        return -1;
     }
 
     public char getSide(){
