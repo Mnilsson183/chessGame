@@ -4,6 +4,7 @@ import java.util.Vector;
 import pieces.Bishop;
 import pieces.King;
 import pieces.Knight;
+import pieces.MovedPiece;
 import pieces.Pawn;
 import pieces.Piece;
 import pieces.Queen;
@@ -27,9 +28,9 @@ public class Board {
 
 	Tile[][] board = new Tile[8][8];
 
-	int moveNumber;
-	int boardMax_row = 8;
-	int boardMax_column = 8;
+	private int moveNumber;
+	private int boardMax_row = 8;
+	private int boardMax_column = 8;
 
 	public Board(){
 
@@ -69,10 +70,6 @@ public class Board {
 		return board[row][column].getBoardPiece().getType() != ' ';
 	}
 
-	public boolean movePiece(int initialX, int initialY, int endX, int endY, char side){
-		return movePiece(board[initialX][initialY], board[endX][endY], side);
-	}
-
 	public Tile isChecked(Tile kingTile){
 		for(int row = 0; row < boardMax_row; row++){
 			for(int column = 0; column < boardMax_column; column++){
@@ -109,8 +106,12 @@ public class Board {
 		}
 	}
 
-	public boolean movePiece(Tile initialTile, Tile finalTile, char side){
-		boolean success = false;
+	public MovedPiece movePiece(int initialX, int initialY, int endX, int endY, char side){
+		return movePiece(board[initialX][initialY], board[endX][endY], side);
+	}
+
+	public MovedPiece movePiece(Tile initialTile, Tile finalTile, char side){
+		MovedPiece receipt = null;
 		printMovePiece(initialTile, finalTile);
 		try {
 			if(finalTile.getRow() < 0 || finalTile.getRow() > board[0].length){
@@ -121,7 +122,7 @@ public class Board {
 				throw new BoardOutOfBoundsException("The column to be moved to or from is out of range");
 			}	
 		} catch (BoardOutOfBoundsException e) {
-			return false;
+			return receipt;
 		}
 		
 		if(finalTile.getSide() != side && initialTile.getSide() == side 
@@ -130,7 +131,7 @@ public class Board {
 			finalTile.setBoardPiece(initialTile.getBoardPiece());
 			initialTile.setBoardPiece(new Piece(' '));
 			moveNumber++;
-			success = true;
+			receipt = new MovedPiece(initialTile, finalTile);
 		} else if(finalTile.getBoardPiece().getSide() == side){
 			System.out.println("Cannot take own piece");
 		} else if(initialTile.getBoardPiece().getSide() == ' ') {
@@ -143,7 +144,7 @@ public class Board {
 			System.out.println("Your king is in check");
 		}
 
-		return success;
+		return receipt;
 	}
 
 	private void printMovePiece(Tile initialTile, Tile finalTile){
@@ -185,15 +186,11 @@ public class Board {
 		return moveNumber;
 	}
 
-	public void printBoard(Board board){
-		System.out.println("Black");
-		for(int row = 0; row < boardMax_row; row++){
-			for(int y = 0; y < boardMax_column; y++){
-				System.out.printf("%c ", board.getPiece(row, y).getType());
-			}
-			System.out.println();
-		}
-		System.out.println("White");
-		System.out.println();
+	public int getBoardMaxRow(){
+		return this.boardMax_row;
+	}
+
+	public int getBoardMaxColumn(){
+		return this.boardMax_column;
 	}
 }		
