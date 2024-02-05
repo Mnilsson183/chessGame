@@ -9,6 +9,8 @@ public class Player {
     public Player(char side){
         this.side = side;
     }
+    // TODO Note that the conversion in the utils
+    // is not correct
     
     public Receipt makeMove(Board board){
         String s = getMove();
@@ -33,9 +35,6 @@ public class Player {
         String s = input.nextLine();
         return utils.convertMixedForm(s);
     }
-
-    // parsed moves should be in the form "row column end_row end_column"
-    // "A7 B6"
 
     public char getSide(){
         return side;
