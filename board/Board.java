@@ -128,10 +128,10 @@ public class Board {
 		if(finalTile.getSide() != side && initialTile.getSide() == side 
 			&& initialTile.isValidMove(finalTile, this) && !this.isChecked(pieceSearch('K', side)[0]).isEmpty())
 		{
+			receipt = new Receipt(initialTile, finalTile, this.moveNumber, initialTile.getBoardPiece(), finalTile.getBoardPiece());
 			finalTile.setBoardPiece(initialTile.getBoardPiece());
-			initialTile.setBoardPiece(new Piece(' '));
+			initialTile.setBoardPiece(new Piece(' ',' '));
 			moveNumber++;
-			receipt = new Receipt(initialTile, finalTile, this.moveNumber);
 		} else if(finalTile.getBoardPiece().getSide() == side){
 			System.out.println("Cannot take own piece");
 		} else if(initialTile.getBoardPiece().getSide() == ' ') {

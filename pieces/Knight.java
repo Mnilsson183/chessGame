@@ -2,8 +2,7 @@ package pieces;
 public class Knight extends Piece {
     
     public Knight(char side){
-        super(side);
-        this.setType('k');
+        super(side, 'k');
     }
  
     public boolean isValidMove(int my_row, int my_column, int end_row, int end_column){

@@ -5,9 +5,8 @@ public class Pawn extends Piece{
     boolean firstMove;
     
     public Pawn(char side){
-        super(side);
+        super(side, 'p');
         this.firstMove = true;
-        this.setType('p');
     }
 
     @Override

@@ -3,8 +3,7 @@ import board.Board;
 public class Queen extends Piece{
 
 	public Queen(char side){
-		super(side);
-		this.setType('q');
+		super(side, 'q');
 	}
 
     @Override

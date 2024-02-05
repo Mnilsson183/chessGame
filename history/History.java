@@ -53,8 +53,20 @@ public class History {
     }
 
     public void printHistory(){
-
+        printHistory(0, receipts.size());
     }
 
-    private void
+    public void printHistory(int startRange, int endRangeExclusive){
+        for(int i = startRange; i < endRangeExclusive; i++){
+            receipts.get(i).printReceipt();
+        }
+    }
+
+    public void printHistory(int history){
+        receipts.get(history).printReceipt();
+    }
+
+    public Receipt getRecentReceipt(){
+        return receipts.lastElement();
+    }
 }

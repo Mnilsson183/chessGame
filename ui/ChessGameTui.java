@@ -34,20 +34,4 @@ public class ChessGameTui extends ChessGameUi{
 		System.out.println();
 	}
 
-	public void printMovePiece(Receipt receipt){
-		printMovePiece(initialTile.getRow(), initialTile.getColumn(), finalTile.getRow(), finalTile.getColumn());
-	}
-
-	public void printMovePiece(int row, int column, int end_row, int end_column){
-		Piece current = this.getPiece(row, column);
-		String currentSide = utils.convertSideCharToString(current.getSide());
-		Piece end = this.getPiece(end_row, end_column);
-		String endSide = utils.convertSideCharToString(end.getSide());
-
-		System.out.println(currentSide + " " + endSide);
-		System.out.println(" " + current.getType() + "  ->  " + end.getType());
-		System.out.printf("(%d, %d)(%d, %d)\n", row, column, end_row, end_column);
-	}
-
-
 }

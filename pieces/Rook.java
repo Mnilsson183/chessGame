@@ -4,8 +4,7 @@ import board.Board;
 public class Rook extends Piece {
     
     public Rook(char side){
-        super(side);
-        this.setType('r');
+        super(side, 'r');
     }
 
     @Override

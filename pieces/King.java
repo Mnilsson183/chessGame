@@ -3,8 +3,7 @@ import board.Board;
 public class King extends Piece{
     
     public King(char side){
-        super(side);
-        this.setType('K');
+        super(side, 'K');
     }
     @Override
     public boolean isValidMove(int my_row, int my_column, int end_row, int end_column, Board board) {

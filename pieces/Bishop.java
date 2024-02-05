@@ -4,8 +4,7 @@ import board.Board;
 public class Bishop extends Piece{
 
     public Bishop(char side){
-        super(side);
-        this.setType('b');
+        super(side, 'b');
     }
     
     @Override

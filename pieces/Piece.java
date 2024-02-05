@@ -7,8 +7,9 @@ public class Piece {
 	private int value;
 	private char side;
 
-	public Piece(char side){
+	public Piece(char side, char type){
 		this.side = side;
+		this.type = type;
 	}
 
 	public int getValue(){
@@ -21,10 +22,6 @@ public class Piece {
 
 	public char getType(){
 		return type;
-	}
-
-	public void setType(char type){
-		this.type = type;
 	}
 
 	public boolean isValidMove(int row, int column, int my_row, int my_column, Board board) {
