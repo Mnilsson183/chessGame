@@ -1,4 +1,7 @@
 package utils;
+
+import java.util.Scanner;
+
 public class utils {
     public static String convertSideCharToString(char c){
         if(c == 'w'){
@@ -29,5 +32,30 @@ public class utils {
         }
     }
 
-    
+    public static String convertMixedForm(String lineIn){
+        lineIn = lineIn.toLowerCase();
+        Scanner input = new Scanner(lineIn);
+
+        String initial = input.next();
+        String fin = input.next();
+        
+        String str = "" + convertAlphaRowToInt(initial.charAt(0)) + " " + initial.charAt(1);
+        return str + " " + convertAlphaRowToInt(fin.charAt(0)) + " " + fin.charAt(1);
+    }
+
+    private static int convertAlphaRowToInt(char c){
+        char[] alpha = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        for(int i = 0; i < alpha.length; i++){
+            if(alpha[i] == c){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // TODO finish this to convert 1 1 4 0 to A4 B7 form
+    public static String convertToMixedForm(String lineIn){
+        lineIn = lineIn.toLowerCase();
+        return "";
+    }
 }

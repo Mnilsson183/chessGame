@@ -72,8 +72,10 @@ public class Receipt {
 		String currentSide = utils.convertSideCharToString(this.pieceMoved.getSide());
 		String endSide = utils.convertSideCharToString(this.pieceTaken.getSide());
 
+        System.out.println("-------------------------------------------------");
 		System.out.println(currentSide + " " + endSide);
 		System.out.println(" " + this.pieceMoved.getType() + "  ->  " + this.pieceTaken.getType());
 		System.out.printf("(%d, %d)(%d, %d)\n", initialRow, initialColumn, finalRow, finalColumn);
+        System.out.println("-------------------------------------------------");
     }
 }

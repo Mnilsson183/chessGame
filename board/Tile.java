@@ -44,7 +44,7 @@ public class Tile {
     }
 
     public boolean isValidMove(Tile tile, Board board){
-        return this.getBoardPiece().isValidMove(this.getRow(), this.getColumn(), tile.getRow(), this.getColumn(), board);
+        return this.getBoardPiece().isValidMove(this.getRow(), this.getColumn(), tile.getRow(), tile.getColumn(), board);
     }
 
     public char getSide(){
