@@ -8,6 +8,8 @@ public class Game {
         Player player_w = new Player('w');
         Player player_b = new Player('b');
 
+        
+
         while(!isWinner(board)){
             chessGameUi.renderChessBoard(board);
             while(player_w.makeMove(board) != null);

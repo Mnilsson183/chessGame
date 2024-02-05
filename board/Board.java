@@ -4,7 +4,7 @@ import java.util.Vector;
 import pieces.Bishop;
 import pieces.King;
 import pieces.Knight;
-import pieces.MovedPiece;
+import pieces.Receipt;
 import pieces.Pawn;
 import pieces.Piece;
 import pieces.Queen;
@@ -106,12 +106,12 @@ public class Board {
 		}
 	}
 
-	public MovedPiece movePiece(int initialX, int initialY, int endX, int endY, char side){
+	public Receipt movePiece(int initialX, int initialY, int endX, int endY, char side){
 		return movePiece(board[initialX][initialY], board[endX][endY], side);
 	}
 
-	public MovedPiece movePiece(Tile initialTile, Tile finalTile, char side){
-		MovedPiece receipt = null;
+	public Receipt movePiece(Tile initialTile, Tile finalTile, char side){
+		Receipt receipt = null;
 		printMovePiece(initialTile, finalTile);
 		try {
 			if(finalTile.getRow() < 0 || finalTile.getRow() > board[0].length){
@@ -131,7 +131,7 @@ public class Board {
 			finalTile.setBoardPiece(initialTile.getBoardPiece());
 			initialTile.setBoardPiece(new Piece(' '));
 			moveNumber++;
-			receipt = new MovedPiece(initialTile, finalTile);
+			receipt = new Receipt(initialTile, finalTile, this.moveNumber);
 		} else if(finalTile.getBoardPiece().getSide() == side){
 			System.out.println("Cannot take own piece");
 		} else if(initialTile.getBoardPiece().getSide() == ' ') {

@@ -1,14 +1,15 @@
 ./pieces/Queen.java
+./pieces/Receipt.java
 ./pieces/Pawn.java
 ./pieces/Rook.java
 ./pieces/King.java
 ./pieces/Piece.java
-./pieces/MovedPiece.java
 ./pieces/Bishop.java
 ./pieces/Knight.java
 ./Main.java
 ./Game.java
 ./ui/ChessGameTui.java
+./ui/ChessGameKingIsInCheck.java
 ./ui/ChessGameGui.java
 ./ui/ChessGameUi.java
 ./ui/ChessGameGuiJFrame.java
@@ -16,6 +17,9 @@
 ./board/Tile.java
 ./board/Board.java
 ./Controller.java
+./history/History.java
 ./utils/BoardOutOfBoundsException.java
+./utils/ChessMoveCannotTakeOwnPieceException.java
+./utils/ChessMoveIsBlockedException.java
 ./utils/NullPiece.java
 ./utils/utils.java
