@@ -70,13 +70,23 @@ public class Board {
 		return board[row][column].getBoardPiece().getType() != ' ';
 	}
 
-	public Tile isChecked(Tile kingTile){
+	// returns the fist source of check
+	public Tile[] isChecked(Tile kingTile){
+		Vector<Tile> checkedFrom = new Vector<>(); 
 		for(int row = 0; row < boardMax_row; row++){
 			for(int column = 0; column < boardMax_column; column++){
-				if(board[row][column].isValidMove(kingTile, this)) return board[row][column];
+				if(board[row][column].isValidMove(kingTile, this)) checkedFrom.add(board[row][column]);
 			}
 		}
-		return new Tile();
+		return tileVectorToArray(checkedFrom);
+	}
+
+	private Tile[] tileVectorToArray(Vector<Tile> tiles){
+		Tile[] tilesArray = new Tile[tiles.size()];
+		for(int i = 0; i < tiles.size(); i++){
+			tilesArray[i] = tiles.get(i);
+		}
+		return tilesArray;
 	}
 
 	public Tile[] pieceSearch(char piece, char side){
@@ -101,6 +111,7 @@ public class Board {
 	}
 
 	private void printIsChecked(Tile[] tiles){
+		if(tiles.length == 0) return;
 		for(int i = 0; i < tiles.length; i++){
 			System.out.println(utils.convertTypeCharToString(tiles[i].getBoardPiece().getType()) + "At (" + tiles[i].getRow() + ", " + tiles[i].getColumn() + ")");
 		}
@@ -126,7 +137,7 @@ public class Board {
 		}
 		
 		if(finalTile.getSide() != side && initialTile.getSide() == side 
-			&& initialTile.isValidMove(finalTile, this) && !this.isChecked(pieceSearch('K', side)[0]).isEmpty())
+			&& initialTile.isValidMove(finalTile, this) && !this.isChecked(pieceSearch('K', side)[0])[0].isEmpty())
 		{
 			receipt = new Receipt(initialTile, finalTile, this.moveNumber, initialTile.getBoardPiece(), finalTile.getBoardPiece());
 			finalTile.setBoardPiece(initialTile.getBoardPiece());
@@ -140,8 +151,10 @@ public class Board {
 			System.out.println("Cannot move opponents pieces");
 		} else if(initialTile.isValidMove(finalTile, this) == false){
 			System.out.println("Not a valid move for that piece");
-		} else if(!this.isChecked(pieceSearch('K', side)[0]).isEmpty()){
+		} else if(!this.isChecked(pieceSearch('K', side)[0])[0].isEmpty()){
 			System.out.println("Your king is in check");
+			System.out.print("From");
+			printIsChecked(this.isChecked(pieceSearch('K', side)[0]));
 		}
 
 		return receipt;

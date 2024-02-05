@@ -1,9 +1,6 @@
 package ui;
 
 import board.Board;
-import board.Tile;
-import pieces.Piece;
-import pieces.Receipt;
 public class ChessGameTui extends ChessGameUi{
     Board board;
     public ChessGameTui(Board board){
