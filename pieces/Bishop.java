@@ -22,15 +22,15 @@ public class Bishop extends Piece{
         for(int offset = 0; offset < initialColumn - finalColumn; offset++){
             if(initialColumn - finalColumn < 0){
                 if(!board.isEmpty(initialRow - offset, initialColumn - offset)){
-                    return false;
+                    return true;
                 }
             } else {
                 if(!board.isEmpty(initialRow + offset, initialColumn + offset)){
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
     
 }

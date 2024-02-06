@@ -25,29 +25,29 @@ public class Queen extends Piece{
 		if(isStraight(initialRow, initialColumn, finalRow, finalColumn)){
 			if(initialRow != finalRow){
 				for(int i = 0; i + initialRow < finalRow; i++){
-					if(!board.isEmpty(initialRow + i, initialColumn)) return false;
+					if(!board.isEmpty(initialRow + i, initialColumn)) return true;
 				}
 			} else if(initialColumn != finalColumn){
 				for(int i = 0; i + initialColumn < finalColumn; i++){
-					if(!board.isEmpty(initialRow, initialColumn + i)) return false;
+					if(!board.isEmpty(initialRow, initialColumn + i)) return true;
 				}
 			}
-			return true;
+			return false;
 		} else if(isDiagonal(initialRow, initialColumn, finalRow, finalColumn)){
 			for(int offset = 0; offset < initialColumn - finalColumn; offset++){
 				if(initialColumn - finalColumn < 0){
 					if(!board.isEmpty(initialRow - offset, initialColumn - offset)){
-						return false;
+						return true;
 					}
 				} else {
 					if(!board.isEmpty(initialRow + offset, initialColumn + offset)){
-						return false;
+						return true;
 					}
 				}
 			}
-			return true;
-		} else{
 			return false;
+		} else{
+			return true;
 		}
 	}
 

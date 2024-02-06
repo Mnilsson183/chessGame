@@ -42,12 +42,12 @@ public class Board {
 		for(int row = 0; row < defaultBoard.length; row++){
 			for(int column = 0; column < defaultBoard[0].length; column++){
 				switch (defaultBoard[row][column]) {
-					case 'r': board[row][column].setBoardPiece(new Rook(row > 2 ? 'b' : 'w')); break;
-					case 'k': board[row][column].setBoardPiece(new Knight(row > 2 ? 'b' : 'w')); break;
-					case 'b': board[row][column].setBoardPiece(new Bishop(row > 2 ? 'b' : 'w')); break;
-					case 'q': board[row][column].setBoardPiece(new Queen(row > 2 ? 'b' : 'w')); break;
-					case 'K': board[row][column].setBoardPiece(new King(row > 2 ? 'b' : 'w')); break;
-					case 'p': board[row][column].setBoardPiece(new Pawn(row > 2 ? 'b' : 'w')); break;
+					case 'r': board[row][column].setBoardPiece(new Rook(row < 2 ? 'b' : 'w')); break;
+					case 'k': board[row][column].setBoardPiece(new Knight(row < 2 ? 'b' : 'w')); break;
+					case 'b': board[row][column].setBoardPiece(new Bishop(row < 2 ? 'b' : 'w')); break;
+					case 'q': board[row][column].setBoardPiece(new Queen(row < 2 ? 'b' : 'w')); break;
+					case 'K': board[row][column].setBoardPiece(new King(row < 2 ? 'b' : 'w')); break;
+					case 'p': board[row][column].setBoardPiece(new Pawn(row < 2 ? 'b' : 'w')); break;
 					case ' ': board[row][column].setBoardPiece(new NullPiece(' ')); break;
 				}
 			}
@@ -117,8 +117,8 @@ public class Board {
 		}
 	}
 
-	public Receipt movePiece(int initialX, int initialY, int endX, int endY, char side){
-		return movePiece(board[initialX][initialY], board[endX][endY], side);
+	public Receipt movePiece(int initialRow, int initialColumn, int endRow, int endColumn, char side){
+		return movePiece(board[initialRow][initialColumn], board[endRow][endColumn], side);
 	}
 
 	public Receipt movePiece(Tile initialTile, Tile finalTile, char side){

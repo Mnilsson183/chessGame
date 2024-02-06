@@ -35,12 +35,13 @@ public class utils {
     public static String convertMixedForm(String lineIn){
         lineIn = lineIn.toLowerCase();
         Scanner input = new Scanner(lineIn);
+        final int boardLength = 8; 
 
         String initial = input.next();
         String fin = input.next();
         
-        String str = "" + convertAlphaRowToInt(initial.charAt(0)) + " " + initial.charAt(1);
-        return str + " " + convertAlphaRowToInt(fin.charAt(0)) + " " + fin.charAt(1);
+        String str = "" + (boardLength - convertAlphaRowToInt(initial.charAt(0)) - 1) + " " + (Integer.parseInt("" + initial.charAt(1)) - 1);
+        return str + " " + (boardLength - convertAlphaRowToInt(fin.charAt(0)) - 1) + " " + (Integer.parseInt("" + fin.charAt(1)) - 1);
     }
 
     private static int convertAlphaRowToInt(char c){

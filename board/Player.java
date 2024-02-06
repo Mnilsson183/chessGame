@@ -9,8 +9,6 @@ public class Player {
     public Player(char side){
         this.side = side;
     }
-    // TODO Note that the conversion in the utils
-    // is not correct
     
     public Receipt makeMove(Board board){
         String s = getMove();
@@ -33,7 +31,9 @@ public class Player {
         System.out.println("make Move: ");
         Scanner input = new Scanner(System.in);
         String s = input.nextLine();
-        return utils.convertMixedForm(s);
+        String str = utils.convertMixedForm(s);
+        System.out.println(str);
+        return str;
     }
 
     public char getSide(){

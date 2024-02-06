@@ -19,13 +19,13 @@ public class Rook extends Piece {
     private boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
         if(initialRow != finalRow){
             for(int i = 0; i + initialRow < finalRow; i++){
-                if(!board.isEmpty(initialRow + i, initialColumn)) return false;
+                if(!board.isEmpty(initialRow + i, initialColumn)) return true;
             }
         } else if(initialColumn != finalColumn){
             for(int i = 0; i + initialColumn < finalColumn; i++){
-                if(!board.isEmpty(initialRow, initialColumn + i)) return false;
+                if(!board.isEmpty(initialRow, initialColumn + i)) return true;
             }
         }
-        return true;
+        return false;
     }
 }
