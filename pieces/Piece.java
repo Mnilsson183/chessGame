@@ -24,7 +24,7 @@ public class Piece {
 		return type;
 	}
 
-	public boolean isValidMove(int row, int column, int my_row, int my_column, Board board) {
+	public boolean isValidMove(int row, int column, int finalRow, int finalColumn, Board board) {
 		return false;
 	}
 }

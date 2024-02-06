@@ -23,13 +23,22 @@ public class Queen extends Piece{
 
 	public boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
 		if(isStraight(initialRow, initialColumn, finalRow, finalColumn)){
-			if(initialRow != finalRow){
-				for(int i = 0; i + initialRow < finalRow; i++){
+			if(initialRow < finalRow){
+				for(int i = 1; i + initialRow < finalRow; i++){
 					if(!board.isEmpty(initialRow + i, initialColumn)) return true;
 				}
-			} else if(initialColumn != finalColumn){
-				for(int i = 0; i + initialColumn < finalColumn; i++){
+			} else if(initialRow > finalRow){
+				for(int i = 1;  initialRow - i > finalRow; i++){
+					if(!board.isEmpty(initialRow - i, initialColumn)) return true;
+				}
+	
+			} else if(initialColumn < finalColumn){
+				for(int i = 1; i + initialColumn < finalColumn; i++){
 					if(!board.isEmpty(initialRow, initialColumn + i)) return true;
+				}
+			} else if(initialColumn > finalColumn){
+				for(int i = 1;  initialColumn - i > finalColumn; i++){
+					if(!board.isEmpty(initialRow, initialColumn - i)) return true;
 				}
 			}
 			return false;

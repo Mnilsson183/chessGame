@@ -19,18 +19,42 @@ public class Bishop extends Piece{
     }
 
     private boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
-        for(int offset = 0; offset < initialColumn - finalColumn; offset++){
-            if(initialColumn - finalColumn < 0){
-                if(!board.isEmpty(initialRow - offset, initialColumn - offset)){
-                    return true;
+            //  2 | 1
+            // -------- (0,0) is the initial values
+            //  3 | 4
+            System.out.println("" + initialRow + initialColumn + finalRow + finalColumn);
+
+            if(initialColumn > finalColumn){
+                // quadrant 1
+                if(initialRow > finalRow){
+                    System.out.println("q1");
+                    for(int i = 1; i + initialRow < finalRow; i++){
+                        System.out.println("" + (initialRow + i) + (initialColumn + i));
+                        if(!board.isEmpty(initialRow + i, initialColumn + i)) return true;
+                    }
+                // quadrant 4
+                } else if(initialRow < finalRow){
+                    System.out.println("q4");
+                    for(int i = 1; initialRow - i < finalRow; i++){
+                        if(!board.isEmpty(initialRow - i, initialColumn + i)) return true;
+                    }
                 }
-            } else {
-                if(!board.isEmpty(initialRow + offset, initialColumn + offset)){
-                    return true;
+            } else if(initialColumn < finalColumn){
+                // quadrant 2
+                if(initialRow > finalRow){
+                    System.out.println("q2");
+                    for(int i = 1; initialRow - i < finalRow; i++){
+                        if(!board.isEmpty(initialRow + i, initialColumn - i)) return true;
+                    }
+                // quadrant 3
+                } else if(initialRow < initialColumn){
+                    System.out.println("q3");
+                    for(int i = 1; initialRow - i > finalRow; i++){
+                        if(!board.isEmpty(initialRow - i, initialColumn - i)) return true;
+                    }
                 }
             }
-        }
-        return false;
+            return false;
     }
     
 }
