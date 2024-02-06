@@ -8,7 +8,7 @@ public class Queen extends Piece{
 
     @Override
     public boolean isValidMove(int my_row, int my_column, int end_row, int end_column, Board board) {
-        return (isStraight(my_row, my_column, end_row, end_column) ^ isDiagonal(my_row, my_column, end_row, end_column)) || !isBlocked(my_row, my_column, end_row, end_column, board);
+        return (isStraight(my_row, my_column, end_row, end_column) ^ isDiagonal(my_row, my_column, end_row, end_column)) && !isBlocked(my_row, my_column, end_row, end_column, board);
     }
 
     private boolean isDiagonal(int my_row, int my_column, int end_row, int end_column){

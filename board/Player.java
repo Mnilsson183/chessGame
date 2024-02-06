@@ -32,7 +32,6 @@ public class Player {
         Scanner input = new Scanner(System.in);
         String s = input.nextLine();
         String str = utils.convertMixedForm(s);
-        System.out.println(str);
         return str;
     }
 
