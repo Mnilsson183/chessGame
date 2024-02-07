@@ -25,6 +25,8 @@ public class Piece {
 	}
 
 	public boolean isValidMove(int row, int column, int finalRow, int finalColumn, Board board) {
+        System.out.println("This should not be used as it is not real code");
+        Thread.dumpStack();
 		return false;
 	}
 }
