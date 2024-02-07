@@ -19,7 +19,7 @@ public class Board {
 			{'r', 'k', 'b', 'q', 'K', 'b', 'k', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'b', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -64,10 +64,10 @@ public class Board {
     }
 
 	public boolean isEmpty(Tile tile){
-		return tile.getBoardPiece().getType() != ' ';
+		return tile.isEmpty();
 	}
 	public boolean isEmpty(int row, int column){
-		return board[row][column].getBoardPiece().getType() != ' ';
+		return board[row][column].isEmpty();
 	}
 
 	// returns the fist source of check

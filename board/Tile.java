@@ -52,7 +52,7 @@ public class Tile {
     }
 
     public boolean isEmpty(){
-        return this.getBoardPiece() == null;
+        return this.getBoardPiece().getType() == ' ';
     }
 
 }

@@ -22,35 +22,32 @@ public class Bishop extends Piece{
             //  2 | 1
             // -------- (0,0) is the initial values
             //  3 | 4
-            System.out.println("" + initialRow + initialColumn + finalRow + finalColumn);
+
+            // b  ->   
+            // (3, 3)(4, 2)
+            // q4
+            
 
             if(initialColumn > finalColumn){
-                // quadrant 1
                 if(initialRow > finalRow){
-                    System.out.println("q1");
-                    for(int i = 1; i + initialRow < finalRow; i++){
-                        System.out.println("" + (initialRow + i) + (initialColumn + i));
-                        if(!board.isEmpty(initialRow + i, initialColumn + i)) return true;
+                    for(int i = 1; initialRow - i > finalRow; i++){
+                        if(!board.isEmpty(initialRow - i, initialColumn - i)) return true;
                     }
-                // quadrant 4
                 } else if(initialRow < finalRow){
-                    System.out.println("q4");
-                    for(int i = 1; initialRow - i < finalRow; i++){
-                        if(!board.isEmpty(initialRow - i, initialColumn + i)) return true;
-                    }
-                }
-            } else if(initialColumn < finalColumn){
-                // quadrant 2
-                if(initialRow > finalRow){
-                    System.out.println("q2");
                     for(int i = 1; initialRow - i < finalRow; i++){
                         if(!board.isEmpty(initialRow + i, initialColumn - i)) return true;
                     }
-                // quadrant 3
-                } else if(initialRow < initialColumn){
-                    System.out.println("q3");
+                }
+            } else if(initialColumn < finalColumn){
+                if(initialRow > finalRow){
+                    System.out.println("q1");
                     for(int i = 1; initialRow - i > finalRow; i++){
-                        if(!board.isEmpty(initialRow - i, initialColumn - i)) return true;
+                        if(!board.isEmpty(initialRow - i, initialColumn + i)) return true;
+                    }
+                } else if(initialRow < finalRow){
+                    System.out.println("q4");
+                    for(int i = 1; initialRow - i < finalRow; i++){
+                        if(!board.isEmpty(initialRow + i, initialColumn + i)) return true;
                     }
                 }
             }
