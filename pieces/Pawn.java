@@ -12,12 +12,21 @@ public class Pawn extends Piece{
     @Override
     public boolean isValidMove(int my_row, int my_column, int end_row, int end_column, Board board) {
         boolean isValid = false;
-        if(this.getSide() == 'w'){
-            if(my_row + 1 == end_row && my_column == end_column) isValid = true;
-            if(my_row + 2 == end_row && my_column == end_column && isFirstMove(my_row)) isValid = true;
-        } else if(this.getSide() == 'b'){
-            if(my_row - 1 == end_row && my_column == end_column) isValid = true;
-            if(my_row - 2 == end_row && my_column == end_column && isFirstMove(my_row)) isValid = true;
+        int rowDiff = Math.abs(my_row-end_row);
+        if(!board.isEmpty(end_row, end_column)){
+            return false;
+        }
+
+        if(this.firstMove){
+            if(rowDiff == 1 || rowDiff == 2){
+                boolean b = my_column == end_column;
+                if(b){
+                    this.firstMove = false;
+                    return true;
+                } else return false;
+            }
+        } else if(rowDiff == 1){
+            return my_column == end_column;
         }
 
         return isValid || !isBlocked(my_row, my_column, end_row, end_column, board);
