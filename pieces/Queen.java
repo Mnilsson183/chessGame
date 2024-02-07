@@ -43,18 +43,29 @@ public class Queen extends Piece{
 			}
 			return false;
 		} else if(isDiagonal(initialRow, initialColumn, finalRow, finalColumn)){
-			for(int offset = 0; offset < initialColumn - finalColumn; offset++){
-				if(initialColumn - finalColumn < 0){
-					if(!board.isEmpty(initialRow - offset, initialColumn - offset)){
-						return true;
-					}
-				} else {
-					if(!board.isEmpty(initialRow + offset, initialColumn + offset)){
-						return true;
-					}
-				}
-			}
-			return false;
+			int rowDiff = Math.abs(initialColumn - finalColumn);
+            if(initialColumn > finalColumn){
+                if(initialRow > finalRow){
+                    for(int i = 1; i < rowDiff; i++){
+                        if(!board.isEmpty(initialRow - i, initialColumn - i)) return true;
+                    }
+                } else if(initialRow < finalRow){
+                    for(int i = 1; i < rowDiff; i++){
+                        if(!board.isEmpty(initialRow + i, initialColumn - i)) return true;
+                    }
+                }
+            } else if(initialColumn < finalColumn){
+                if(initialRow > finalRow){
+                    for(int i = 1; i < rowDiff; i++){
+                        if(!board.isEmpty(initialRow - i, initialColumn + i)) return true;
+                    }
+                } else if(initialRow < finalRow){
+                    for(int i = 1; i < rowDiff; i++){
+                        if(!board.isEmpty(initialRow + i, initialColumn + i)) return true;
+                    }
+                }
+            }
+            return false;
 		} else{
 			return true;
 		}
