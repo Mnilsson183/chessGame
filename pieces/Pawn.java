@@ -11,34 +11,29 @@ public class Pawn extends Piece{
 
     @Override
     public boolean isValidMove(int my_row, int my_column, int end_row, int end_column, Board board) {
-        boolean isValid = false;
         int rowDiff = Math.abs(my_row-end_row);
-        if(!board.isEmpty(end_row, end_column)){
-            return false;
+        int columnDiff = Math.abs(my_column-end_column);
+        if(columnDiff != 1){
+            if(!board.isEmpty(end_row, end_column)){
+                return false;
+            }
         }
 
         if(this.firstMove){
-            if(rowDiff == 1 || rowDiff == 2){
+            if((rowDiff == 1 || rowDiff == 2) && columnDiff == 0){
                 boolean b = my_column == end_column;
                 if(b){
                     this.firstMove = false;
                     return true;
                 } else return false;
             }
-        } else if(rowDiff == 1){
+        } else if(rowDiff == 1 && columnDiff == 0){
             return my_column == end_column;
-        }
-
-        return isValid || !isBlocked(my_row, my_column, end_row, end_column, board);
-    }
-
-    private boolean isFirstMove(int my_row){
-        if(this.getSide() == 'w'){
-            if(my_row == 6){
+        } else if(rowDiff == 1 && columnDiff == 1){
+            System.out.println("" + this.getSide() + (end_row - my_row) + board.isEmpty(end_row,end_column));
+            if((this.getSide() == 'w') && (end_row - my_row < 0) && (!board.isEmpty(end_row, end_column))){
                 return true;
-            }
-        } else if(this.getSide() == 'b'){
-            if(my_row == 1){
+            } else if((this.getSide() == 'b') && (end_row - my_row > 0) && (!board.isEmpty(end_row, end_column))){
                 return true;
             }
         }
@@ -46,12 +41,12 @@ public class Pawn extends Piece{
         return false;
     }
 
-    private boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
-        for(int offset = 0; initialColumn + offset <= finalColumn; offset++){
-            if(!board.isEmpty(initialRow, offset + initialColumn)){
-                return true;
-            }
-        }
-        return false;
+    public boolean isOnPromotionSquare(int row, Board board){
+        if(this.getSide() == 'w' && board.getBlackSide() == row){
+            return true;
+        } else if(this.getSide() == 'b' && board.getWhiteSide() == row){
+            return true;
+        } else return false;
     }
+
 }

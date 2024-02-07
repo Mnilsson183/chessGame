@@ -19,7 +19,7 @@ public class Board {
 			{'r', 'k', 'b', 'q', 'K', 'b', 'k', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', 'q', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -31,6 +31,8 @@ public class Board {
 	private int moveNumber;
 	private int boardMax_row = 8;
 	private int boardMax_column = 8;
+	private final int blackSide = 0;
+	private final int whiteSide = 7;
 
 	public Board(){
 
@@ -205,5 +207,13 @@ public class Board {
 
 	public int getBoardMaxColumn(){
 		return this.boardMax_column;
+	}
+
+	public int getBlackSide(){
+		return this.blackSide;
+	}
+
+	public int getWhiteSide(){
+		return this.whiteSide;
 	}
 }		
