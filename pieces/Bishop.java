@@ -19,34 +19,25 @@ public class Bishop extends Piece{
     }
 
     private boolean isBlocked(int initialRow, int initialColumn, int finalRow, int finalColumn, Board board){
-            //  2 | 1
-            // -------- (0,0) is the initial values
-            //  3 | 4
 
-            // b  ->   
-            // (3, 3)(4, 2)
-            // q4
-            
-
+            int rowDiff = Math.abs(initialColumn - finalColumn);
             if(initialColumn > finalColumn){
                 if(initialRow > finalRow){
-                    for(int i = 1; initialRow - i > finalRow; i++){
+                    for(int i = 1; i < rowDiff; i++){
                         if(!board.isEmpty(initialRow - i, initialColumn - i)) return true;
                     }
                 } else if(initialRow < finalRow){
-                    for(int i = 1; initialRow - i < finalRow; i++){
+                    for(int i = 1; i < rowDiff; i++){
                         if(!board.isEmpty(initialRow + i, initialColumn - i)) return true;
                     }
                 }
             } else if(initialColumn < finalColumn){
                 if(initialRow > finalRow){
-                    System.out.println("q1");
-                    for(int i = 1; initialRow - i > finalRow; i++){
+                    for(int i = 1; i < rowDiff; i++){
                         if(!board.isEmpty(initialRow - i, initialColumn + i)) return true;
                     }
                 } else if(initialRow < finalRow){
-                    System.out.println("q4");
-                    for(int i = 1; initialRow - i < finalRow; i++){
+                    for(int i = 1; i < rowDiff; i++){
                         if(!board.isEmpty(initialRow + i, initialColumn + i)) return true;
                     }
                 }
