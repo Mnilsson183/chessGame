@@ -57,6 +57,30 @@ public class Board {
 		moveNumber = 0;
 	}
 
+	public Board(char[][] defaultBoard){
+		this.defaultBoard = defaultBoard;
+		
+		for(int row = 0; row < defaultBoard.length; row++){
+			for(int column = 0; column < defaultBoard[0].length; column++){
+				board[row][column] = new Tile(row, column);
+			}
+		}
+		for(int row = 0; row < defaultBoard.length; row++){
+			for(int column = 0; column < defaultBoard[0].length; column++){
+				switch (defaultBoard[row][column]) {
+					case 'r': board[row][column].setBoardPiece(new Rook(row < 2 ? 'b' : 'w')); break;
+					case 'k': board[row][column].setBoardPiece(new Knight(row < 2 ? 'b' : 'w')); break;
+					case 'b': board[row][column].setBoardPiece(new Bishop(row < 2 ? 'b' : 'w')); break;
+					case 'q': board[row][column].setBoardPiece(new Queen(row < 2 ? 'b' : 'w')); break;
+					case 'K': board[row][column].setBoardPiece(new King(row < 2 ? 'b' : 'w')); break;
+					case 'p': board[row][column].setBoardPiece(new Pawn(row < 2 ? 'b' : 'w')); break;
+					case ' ': board[row][column].setBoardPiece(new NullPiece(' ')); break;
+				}
+			}
+		}
+		moveNumber = 0;
+	}
+
 	public Piece getPiece(Tile tile){
 		return getPiece(tile.getRow(), tile.getColumn());
 	}

@@ -9,6 +9,11 @@ public class Rook extends Piece {
 
     @Override
     public boolean isValidMove(int my_row, int my_column, int end_row, int end_column, Board board) {
+        if(end_column >= board.getBoardMaxColumn() || end_column < 0){
+            return false;
+        } else if(end_row >= board.getBoardMaxRow() || end_row < 0){
+            return false;
+        }
         return isStraight(my_row, my_column, end_row, end_column) && !isBlocked(my_row, my_column, end_row, end_column, board);
     }
 
