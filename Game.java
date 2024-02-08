@@ -13,21 +13,24 @@ public class Game {
         History history = new History();
         Receipt returnedReceipt;   
 
-        while(!isWinner(board)){
-            chessGameUi.renderChessBoard(board);
+        chessGameUi.renderChessBoard(board);
+        while(true){
             do{
                 returnedReceipt = player_w.makeMove(board);
             } while(returnedReceipt == null);
             history.add(returnedReceipt);
             chessGameUi.renderChessBoard(board);
+            if(checkIfWinner(board)) break;
             do{
                 returnedReceipt = player_b.makeMove(board);
             } while (returnedReceipt == null);
-            
+            history.add(returnedReceipt);
+            chessGameUi.renderChessBoard(board);
+            if(checkIfWinner(board)) break;
         }
     }
 
-    private static boolean isWinner(Board board){
+    private static boolean checkIfWinner(Board board){
         return false;
     }
 }
