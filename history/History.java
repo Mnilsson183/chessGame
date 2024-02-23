@@ -3,74 +3,135 @@ package history;
 import java.util.Vector;
 import pieces.Receipt;
 
-// immutable excluding additions
+import java.util.Collections;
+import java.util.List;
+import java.util.Vector;
+
+/**
+ * The History class maintains the history of moves made in the chess game.
+ * It stores receipts of each move and provides methods to access and print the history.
+ * This class is immutable except for additions (adding new receipts).
+ */
 public class History {
-    private Vector<Receipt> receipts;
 
-    public History(){
-        this.receipts = new Vector<Receipt>();
+    /** The list of receipts representing the history of moves. */
+    private final Vector<Receipt> receipts;
+
+    /**
+     * Constructs a new History object with an empty list of receipts.
+     */
+    public History() {
+        this.receipts = new Vector<>();
     }
 
-    public History(Vector<Receipt> history){
-        this.receipts = history;
+    /**
+     * Constructs a new History object with the given list of receipts.
+     * @param history The list of receipts representing the history of moves.
+     */
+    public History(Vector<Receipt> history) {
+        this.receipts = new Vector<>(history);
     }
 
-    public History(Receipt[] receipts){
-        for(int i = 0; i < receipts.length; i++){
-            this.receipts.add(receipts[i]);
-        }
+    /**
+     * Constructs a new History object with the given array of receipts.
+     * @param receipts The array of receipts representing the history of moves.
+     */
+    public History(Receipt[] receipts) {
+        this.receipts = new Vector<>();
+        Collections.addAll(this.receipts, receipts);
     }
 
-    public void add(Receipt receipt){
+    /**
+     * Adds a new receipt representing a move to the history.
+     * @param receipt The receipt representing the move to be added.
+     */
+    public void add(Receipt receipt) {
         this.receipts.add(receipt);
     }
 
-    public int getReceiptInitialRow(int receiptNumber){
+    /**
+     * Retrieves the initial row index of the specified receipt.
+     * @param receiptNumber The index of the receipt in the history.
+     * @return The initial row index of the receipt.
+     */
+    public int getReceiptInitialRow(int receiptNumber) {
         return receipts.get(receiptNumber).getInitialRow();
     }
 
-    public int getReceiptInitialColumn(int receiptNumber){
+    /**
+     * Retrieves the initial column index of the specified receipt.
+     * @param receiptNumber The index of the receipt in the history.
+     * @return The initial column index of the receipt.
+     */
+    public int getReceiptInitialColumn(int receiptNumber) {
         return receipts.get(receiptNumber).getInitialColumn();
     }
 
-    public int getReceiptFinalRow(int receiptNumber){
+    /**
+     * Retrieves the final row index of the specified receipt.
+     * @param receiptNumber The index of the receipt in the history.
+     * @return The final row index of the receipt.
+     */
+    public int getReceiptFinalRow(int receiptNumber) {
         return receipts.get(receiptNumber).getFinalRow();
     }
 
-    public int getReceiptFinalColumn(int receiptNumber){
+    /**
+     * Retrieves the final column index of the specified receipt.
+     * @param receiptNumber The index of the receipt in the history.
+     * @return The final column index of the receipt.
+     */
+    public int getReceiptFinalColumn(int receiptNumber) {
         return receipts.get(receiptNumber).getFinalColumn();
     }
 
-    // will only return the first instance that this move happened on
-    // is flawed TODO fix this behavior
-    public int findReceipt(Receipt receipt){   
-        for(int i = 0; i < receipts.size(); i++){
-            if(receipts.get(i).equals(receipt)){
-                return i;
-            }
-        }
-        return -1;
+    /**
+     * Finds the index of the first occurrence of the specified receipt in the history.
+     * @param receipt The receipt to search for.
+     * @return The index of the receipt if found; otherwise, -1.
+     */
+    public int findReceipt(Receipt receipt) {
+        return receipts.indexOf(receipt);
     }
 
-    public void printHistory(){
+    /**
+     * Prints the entire history of moves.
+     */
+    public void printHistory() {
         printHistory(0, receipts.size());
     }
 
-    public void printHistory(int startRange, int endRangeExclusive){
-        for(int i = startRange; i < endRangeExclusive; i++){
+    /**
+     * Prints a range of receipts in the history.
+     * @param startRange The starting index of the range (inclusive).
+     * @param endRangeExclusive The ending index of the range (exclusive).
+     */
+    public void printHistory(int startRange, int endRangeExclusive) {
+        for (int i = startRange; i < endRangeExclusive; i++) {
             receipts.get(i).printReceipt();
         }
     }
 
-    public void printHistory(int history){
+    /**
+     * Prints a specific receipt in the history.
+     * @param history The index of the receipt to print.
+     */
+    public void printHistory(int history) {
         receipts.get(history).printReceipt();
     }
 
-    public Receipt getRecentReceipt(){
+    /**
+     * Retrieves the most recent receipt in the history.
+     * @return The most recent receipt.
+     */
+    public Receipt getRecentReceipt() {
         return receipts.lastElement();
     }
 
-    public void printReceipt(){
+    /**
+     * Prints the most recent receipt in the history.
+     */
+    public void printReceipt() {
         getRecentReceipt().printReceipt();
     }
 }

@@ -4,13 +4,22 @@ import ui.ChessGameGui;
 import ui.ChessGameTui;
 import ui.ChessGameUi;
 
-public class Controller{
-    public static void start(String[] s){
+/**
+ * The Controller class manages the starting of the chess game.
+ * It initializes the game board and user interface based on command line arguments.
+ */
+public class Controller {
+
+    /**
+     * Starts the chess game.
+     * @param cli Command line arguments passed to the program.
+     */
+    public static void start(String[] cli) {
         Board board = new Board();
         ChessGameUi chessGameUi = null;
-        if(s.length > 1 || s.length == 0){
+        if (cli.length > 1 || cli.length == 0) {
             chessGameUi = new ChessGameGui();
-        } else if(s[0].equals("--tui")){
+        } else if (cli[0].equals("--tui")) {
             chessGameUi = new ChessGameTui(board);
         }
         Game.playGame(board, chessGameUi);

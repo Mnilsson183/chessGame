@@ -2,7 +2,17 @@ package utils;
 
 import java.util.Scanner;
 
+
+/**
+ * Utility class for various conversions and operations.
+ */
 public class utils {
+    
+    /**
+     * Converts a character representing a side ('w' or 'b') to its corresponding string representation.
+     * @param c The character representing the side.
+     * @return The string representation of the side.
+     */
     public static String convertSideCharToString(char c){
         if(c == 'w'){
             return "White";
@@ -13,6 +23,11 @@ public class utils {
         }
     }
 
+    /**
+     * Converts a character representing a piece type ('p', 'r', 'k', 'b', 'q', 'K') to its corresponding string representation.
+     * @param c The character representing the piece type.
+     * @return The string representation of the piece type.
+     */
     public static String convertTypeCharToString(char c){
         switch (c) {
             case 'p':
@@ -32,6 +47,11 @@ public class utils {
         }
     }
 
+    /**
+     * Converts a mixed-formatted chess move string to the format used internally (e.g., "a2 a4" to "6 1 4 1").
+     * @param lineIn The input string in mixed format.
+     * @return The string representing the move in internal format.
+     */
     public static String convertMixedForm(String lineIn){
         lineIn = lineIn.toLowerCase();
         Scanner input = new Scanner(lineIn);
@@ -44,6 +64,11 @@ public class utils {
         return str + " " + (boardLength - convertAlphaRowToInt(fin.charAt(0)) - 1) + " " + (Integer.parseInt("" + fin.charAt(1)) - 1);
     }
 
+    /**
+     * Converts a character representing a row in chess notation to its integer representation.
+     * @param c The character representing the row in chess notation.
+     * @return The integer representation of the row.
+     */
     private static int convertAlphaRowToInt(char c){
         char[] alpha = "abcdefghijklmnopqrstuvwxyz".toCharArray();
         for(int i = 0; i < alpha.length; i++){
@@ -54,9 +79,9 @@ public class utils {
         return -1;
     }
 
-    // TODO finish this to convert 1 1 4 0 to A4 B7 form
-    public static String convertToMixedForm(String lineIn){
-        lineIn = lineIn.toLowerCase();
-        return "";
-    }
+    // TODO: Implement this method to convert internal format to mixed form
+    // public static String convertToMixedForm(String lineIn){
+    //     lineIn = lineIn.toLowerCase();
+    //     return "";
+    // }
 }
