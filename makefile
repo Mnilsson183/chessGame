@@ -60,3 +60,7 @@ clean:
 
 # PHONY targets
 .PHONY: all run test clean
+
+count-lines:
+	@echo "Counting lines of code in all Git-tracked files..."
+	git ls-files | xargs wc -l

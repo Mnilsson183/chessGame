@@ -3,9 +3,6 @@ package history;
 import java.util.Vector;
 import pieces.Receipt;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Vector;
 
 /**
  * The History class maintains the history of moves made in the chess game.
@@ -15,7 +12,7 @@ import java.util.Vector;
 public class History {
 
     /** The list of receipts representing the history of moves. */
-    private final Vector<Receipt> receipts;
+    private Vector<Receipt> receipts;
 
     /**
      * Constructs a new History object with an empty list of receipts.
@@ -37,8 +34,9 @@ public class History {
      * @param receipts The array of receipts representing the history of moves.
      */
     public History(Receipt[] receipts) {
-        this.receipts = new Vector<>();
-        Collections.addAll(this.receipts, receipts);
+        for(int i = 0; i < receipts.length; i++){
+            this.receipts.add(receipts[i]);
+        }
     }
 
     /**
