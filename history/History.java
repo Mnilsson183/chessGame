@@ -69,4 +69,8 @@ public class History {
     public Receipt getRecentReceipt(){
         return receipts.lastElement();
     }
+
+    public void printReceipt(){
+        getRecentReceipt().printReceipt();
+    }
 }

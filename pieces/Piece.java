@@ -1,6 +1,7 @@
 package pieces;
-import board.Board;
 
+import board.Board;
+import utils.utils;
 public class Piece {
 
 	private char type;
@@ -29,5 +30,9 @@ public class Piece {
         Thread.dumpStack();
 		return false;
 	}
+
+	public String toString(){
+        return "" + utils.convertTypeCharToString(this.getType()) + " on side " + utils.convertSideCharToString(this.getSide());
+    }
 }
 
