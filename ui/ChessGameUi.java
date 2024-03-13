@@ -1,7 +1,7 @@
 package ui;
 
 import board.Board;
-public class ChessGameUi {
+abstract public class ChessGameUi {
     public void renderChessBoard(Board board){
 
     }
