@@ -1,6 +1,7 @@
 package board;
 import java.util.Vector;
 
+import controls.ChessGameCursor;
 import pieces.Bishop;
 import pieces.King;
 import pieces.Knight;
@@ -51,10 +52,16 @@ public class Board {
     /** The index representing the white side of the board. */
     private final int whiteSide = 7;
 
+	public ChessGameCursor playerR;
+	public ChessGameCursor playerB;
+
 	/**
      * Constructs a new Board object with the default arrangement of pieces.
      */
 	public Board(){
+
+		this.playerR = new ChessGameCursor(boardMax_row, boardMax_column);
+		this.playerB = new ChessGameCursor(boardMax_row, boardMax_column);
 
 		for(int row = 0; row < defaultBoard.length; row++){
 			for(int column = 0; column < defaultBoard[0].length; column++){

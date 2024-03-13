@@ -32,18 +32,6 @@ public class Player {
      * @return A receipt object containing information about the move.
      */
     public Receipt makeMove(Board board){
-        String s = getMove();
-        Scanner input = new Scanner(s);
-        Receipt receipt = board.movePiece(input.nextInt(), input.nextInt(), input.nextInt(), input.nextInt(), this.side);
-        input.close();
-        return receipt;
-    }
-
-    /**
-     * Retrieves the move input from the player.
-     * @return The move input as a string.
-     */
-    private String getMove(){
         switch (this.getSide()) {
             case 'w':
                 System.out.print("White ");
@@ -53,11 +41,11 @@ public class Player {
                 System.out.print("Black ");
                 break;
         }
-        System.out.println("make Move: ");
-        Scanner input = new Scanner(System.in);
-        String s = input.nextLine();
-        String str = utils.convertMixedForm(s);
-        return str;
+        String s = getMove();
+        Scanner input = new Scanner(s);
+        Receipt receipt = board.movePiece(input.nextInt(), input.nextInt(), input.nextInt(), input.nextInt(), this.side);
+        input.close();
+        return receipt;
     }
 
     /**

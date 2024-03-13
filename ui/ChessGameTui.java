@@ -1,14 +1,11 @@
 package ui;
 
 import board.Board;
-import controls.ChessGameCursor;
 /**
  * Text-based user interface (TUI) for the chess game.
  */
 public class ChessGameTui extends ChessGameUi{
     private Board board;
-    ChessGameCursor player1;
-    ChessGameCursor player2;
 
     /**
      * Constructs a ChessGameTui object with the specified game board.
@@ -16,8 +13,6 @@ public class ChessGameTui extends ChessGameUi{
      */
     public ChessGameTui(Board board){
         this.board = board;
-        player1 = new ChessGameCursor(board.getBoardMaxRow(), board.getBoardMaxColumn());
-        player2 = new ChessGameCursor(board.getBoardMaxRow(), board.getBoardMaxColumn());
     }
 
     /**
@@ -25,6 +20,7 @@ public class ChessGameTui extends ChessGameUi{
      * @param board The game board to render.
      */
     public void renderChessBoard(Board board){
+        System.out.print('\033[2J');
         int boardMaxRow = board.getBoardMaxRow();
         int boardMaxColumn = board.getBoardMaxColumn();
         char[] alpha = "abcdefghijklmnopqrstuvwxyz".toCharArray();
@@ -42,9 +38,9 @@ public class ChessGameTui extends ChessGameUi{
                 else if(board.getPiece(row, column).getSide() == 'w') printColor = redTerminalColor;
                 else printColor = whiteTerminalColor;
                 System.out.print(printColor);
-                if(row == player1.getRow() && column == player1.getColumn()){
+                if(row == board.playerB.getRow() && column == board.playerB.getColumn()){
                     System.out.print(blueCursorTerminalColor);
-                } else if(row == player2.getRow() && column == player2.getColumn()){
+                } else if(row == board.playerR.getRow() && column == board.playerR.getColumn()){
                     System.out.print(redCursorTerminalColor);
                 }
                 System.out.printf("%c ", board.getPiece(row, column).getType());
