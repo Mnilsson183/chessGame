@@ -20,7 +20,7 @@ public class ChessGameTui extends ChessGameUi{
      * @param board The game board to render.
      */
     public void renderChessBoard(Board board){
-        System.out.print('\033[2J');
+        System.out.print("\033[2J");
         int boardMaxRow = board.getBoardMaxRow();
         int boardMaxColumn = board.getBoardMaxColumn();
         char[] alpha = "abcdefghijklmnopqrstuvwxyz".toCharArray();

@@ -5,6 +5,8 @@ public class ChessGameCursor {
    private int column;
    int rowMax;
    int columnMax;
+   int stashedRow;
+   int stashedColumn;
    public ChessGameCursor(){
       row = 0;
       column = 0;
@@ -18,25 +20,25 @@ public class ChessGameCursor {
       this.columnMax = columnMax;
    }
 
-   public void moveCursorU(){
+   public void moveCursorR(){
       if(column + 1 >= columnMax){
             return;
       } column++;
    }
 
-   public void moveCursorD(){
+   public void moveCursorL(){
       if(column - 1 < 0){
             return;
       } column--;
    }
    
-   public void moveCursorR(){
+   public void moveCursorD(){
       if(row + 1 >= rowMax){
             return;
       } row++;
    }
 
-   public void moveCursorL(){
+   public void moveCursorU(){
       if(row - 1 >= rowMax){
             return;
       } row--;
@@ -48,5 +50,18 @@ public class ChessGameCursor {
 
    public int getColumn(){
       return this.column;
+   }
+
+   public int getStashedRow(){
+      return this.stashedRow;
+   }
+   
+   public int getStashedColumn(){
+      return this.stashedColumn;
+   }
+
+   public void stash(){
+      this.stashedColumn = this.column;
+      this.stashedRow = this.row;
    }
 }

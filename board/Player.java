@@ -1,7 +1,16 @@
 package board;
 import java.util.Scanner;
+
+import controls.ChessGameCursor;
 import pieces.Receipt;
 import utils.utils;
+import controls.Controller;
+
+import java.io.BufferedReader;
+import java.io.Console;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 
 /**
  * The Player class represents a player in the chess game.
@@ -31,7 +40,7 @@ public class Player {
      * @param board The chess board on which the move is to be made.
      * @return A receipt object containing information about the move.
      */
-    public Receipt makeMove(Board board){
+    public Receipt makeMove(Board board, ChessGameCursor cursor){
         switch (this.getSide()) {
             case 'w':
                 System.out.print("White ");
@@ -41,10 +50,56 @@ public class Player {
                 System.out.print("Black ");
                 break;
         }
-        String s = getMove();
-        Scanner input = new Scanner(s);
-        Receipt receipt = board.movePiece(input.nextInt(), input.nextInt(), input.nextInt(), input.nextInt(), this.side);
-        input.close();
+
+        Console console = System.console();
+
+        if (console == null) {
+            System.out.println("Console is not available");
+            System.exit(1);
+        }
+
+        try {
+            boolean set = false;
+            while (true) {
+                // Read input from the user
+                int key = console.reader().read();
+
+                if (key == -1) {
+                    break; // End of input
+                } else if (key == 'q') {
+                    if(!set){
+                        cursor.stash();
+                    } else {
+                        break; // Quit on 'q'
+                    }
+                } else if (key == 27) {
+                    int arrowKey = console.reader().read();
+                    if (arrowKey == '[') {
+                        arrowKey = console.reader().read();
+                        switch (arrowKey) {
+                            case 'A':
+                                cursor.moveCursorU();
+                                break;
+                            case 'B':
+                                cursor.moveCursorD();
+                                break;
+                            case 'C':
+                                cursor.moveCursorR();
+                                break;
+                            case 'D':
+                                cursor.moveCursorL();
+                                break;
+                        }
+                        ((ui.ChessGameTui)Controller.chessGameUi).renderChessBoard(Controller.board);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error reading from user");
+            System.exit(0);
+        }
+
+        Receipt receipt = board.movePiece(cursor.getStashedRow(),cursor.getStashedColumn(),cursor.getRow(),cursor.getColumn(), this.side);
         return receipt;
     }
 

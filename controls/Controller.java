@@ -10,13 +10,14 @@ import ui.ChessGameUi;
  */
 public class Controller {
 
+    static public ChessGameUi chessGameUi = null;
+    static public Board board = null;
     /**
      * Starts the chess game.
      * @param cli Command line arguments passed to the program.
      */
     public static void start(String[] cli) {
-        Board board = new Board();
-        ChessGameUi chessGameUi = null;
+        board = new Board();
         if (cli.length > 1 || cli.length == 0) {
             chessGameUi = new ChessGameGui();
         } else if (cli[0].equals("--tui")) {

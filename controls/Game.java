@@ -30,7 +30,7 @@ public class Game {
         while (true) {
             // White player's turn
             do {
-                returnedReceipt = player_w.makeMove(board);
+                returnedReceipt = player_w.makeMove(board, board.playerR);
             } while (returnedReceipt == null);
             history.add(returnedReceipt);
             history.printReceipt();
@@ -39,7 +39,7 @@ public class Game {
 
             // Black player's turn
             do {
-                returnedReceipt = player_b.makeMove(board);
+                returnedReceipt = player_b.makeMove(board, board.playerB);
             } while (returnedReceipt == null);
             history.add(returnedReceipt);
             history.printReceipt();
